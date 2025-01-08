@@ -1,0 +1,196 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: "iconfont"; /* Project id 4055795 */
+    src: url('//at.alicdn.com/t/c/font_4055795_4qnl7wya7nu.woff2?t=1736323111724') format('woff2'),
+    url('//at.alicdn.com/t/c/font_4055795_4qnl7wya7nu.woff?t=1736323111724') format('woff'),
+    url('//at.alicdn.com/t/c/font_4055795_4qnl7wya7nu.ttf?t=1736323111724') format('truetype');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 40px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+}
+
+.icon-jiantou:before {
+    content: "\e7a7";
+}
+
+
+
+
+.fd-flexContent{
+    width: 800px;
+}
+.fd-flexContent ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid rgb(200, 202, 208);
+    border-radius: 10px;
+    height: 400px;
+    padding:6px;
+    overflow: hidden;
+
+}
+.fd-flexContent>ul>li{
+    padding: 10px 16px;
+    margin-top: 4px;
+    height:auto;
+    margin-left: 5px;
+    color: #e3e6e8;
+    background-color: rgb(26, 31, 35);
+
+}
+.fd-flextype{
+    width: 100%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.fd-flexmenu{
+    width: 100%;
+   display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 10px;
+    line-height: 15px;
+}
+.fd-flexmenu span{
+    color: white;
+    font-size: 18px;
+}
+
+.fd-flexmenu select{
+    color: white;
+    font-size: 18px;
+    margin-left: 12px;
+    height:40px;
+    border-radius: 10px;
+    outline: 2px solid #e3e6e8;
+    flex: 1;
+    background-color: rgb(26, 31, 35);
+   padding: 4px 4px;
+}
+
+.fd-flexmenu select:hover {
+    background-color: rgba(26, 31, 35, 0.8);
+}
+
+.fd-flexmenu select:focus {
+    outline-color: #fff;
+}
+
+.fd-flexdir{
+    width: 960px;
+    background-color: rgb(13, 15, 18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.fd-primary-axis{
+    width: 800px;
+    height: 60px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.fd-secondary-axis{
+    width: 100%;
+    position: relative;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fd-line{
+    background-color: rgb(227, 230, 232);
+    width: calc(100% - 30px);
+    height: 3px;
+    border-radius: 10px;
+}
+
+
+.jiantou{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.fd-paxis{
+    position: relative;
+    margin-bottom: 6px;
+    padding-top: 4px;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    white-space: nowrap;
+    align-self: flex-end;
+    margin-right: 40px;
+}
+
+.switch {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 80px;
+    background-color: rgb(26, 31, 35);
+    border-radius: 16px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.switch[data-ison="true"] {
+    justify-content: flex-end;
+}
+
+.handle {
+    width: 28px;
+    height: 28px;
+    background-color: rgb(227, 230, 232);
+    border-radius: 16px;
+}
+
+.fd-switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    gap: 10px;
+    color: white;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    height: 40px;
+}
+
+.fd-switch span {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    height: 100%;
+    line-height: 40px;
+}
+
+
