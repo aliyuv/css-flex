@@ -12,44 +12,4 @@ button {
     color: inherit;
 }
 .app {
-     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: blueviolet;
-    
-}
-
-.box {
-    width: 300px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: aqua;
-    flex: 2;
-}
-
-.box1 {
-    width: 180px;
-    height: 180px;
-    border: 4px dashed black;
-    border-radius: 1rem;
-}
-
-.box2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-}
-
-.container>ul>li{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 1rem;
-    margin: 1rem;
-    height:10rem;
 }

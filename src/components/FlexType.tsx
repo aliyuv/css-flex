@@ -1,30 +1,21 @@
-import styles from "./DisplayType.module.css";
+import styles from "./FlexType.module.css";
 import {motion} from "motion/react";
 import {useState} from "react";
 
 function FlexType() {
-    const worlds = ['hello', 'world', 'world', 'to']
+    const worlds = ['Hello', 'to', 'the', 'World']
     const types = ['block', 'flex']
-    const [typesName, setTypeName] = useState('block')
+    const [typesName, setTypeName] = useState<'block' | 'flex'>('block')
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.containerBox}>
-                    <motion.ul>
+                    <motion.ul style={{display: typesName}} layout="preserve-aspect">
                         {worlds.map((item, index) => (
-                            <>
-                                {/*<div className={styles.nth} >11111111111111111111</div>*/}
-                                <motion.li key={index} layout animate={typesName === 'block' ?
-                                    {
-                                        transformOrigin: 'center center',
-                                        scale: 2,
-                                        translateX: `0px`,
-                                        translateY: `-50px`,
-                                        translateZ: `100px`
-                                    } : {transformOrigin: 'center center', skew: '180deg'}}
-                                           transition={{type: 'spring'}}>{item}11
+                                <motion.li key={index} layout style={{height: typesName === "flex" ? "300px" : "auto", }}>
+                                    <div className={styles.topline}></div>
+                                    {item}
                                 </motion.li>
-                            </>
                         ))}
                     </motion.ul>
                 </div>
@@ -32,9 +23,8 @@ function FlexType() {
                     <div className={styles.arrt}>display:</div>
                     <div className={styles.type}>
                         {types.map((item, index) => (
-                            <>
                                 <div className={styles.btn} key={index}>
-                                    <motion.button onClick={() => setTypeName(item)}>
+                                    <motion.button onClick={() => setTypeName(item as 'block' | 'flex')}>
                                         <motion.div key={index}>{item}</motion.div>
                                     </motion.button>
                                     <motion.div
@@ -45,7 +35,6 @@ function FlexType() {
                                             opacity: 0.4
                                         }}/>
                                 </div>
-                            </>
                         ))}
                     </div>
                 </div>
