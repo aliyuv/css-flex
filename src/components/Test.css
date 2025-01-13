@@ -1,0 +1,29 @@
+.flex {
+    width: 800px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.flex.start {
+    justify-content: start;
+}
+
+.flex.end {
+    justify-content: end;
+}
+
+.box {
+    background: aqua;
+    border-radius: 20px;
+}
+
+.box.small {
+    width: 100px;
+    height: 100px;
+}
+
+.box.large {
+    width: 200px;
+    height: 200px;
+}

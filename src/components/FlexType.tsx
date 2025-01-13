@@ -15,7 +15,7 @@ function FlexType() {
         <>
             <div className={styles.container} >
                 <div className={styles.containerBox}>
-                        <motion.ul style={{display: typesName}}  ref={elRef}>
+                        <motion.ul style={{display: typesName,flexDirection:"row"}}  ref={elRef}>
                             {worlds.map((item, index) => (
                                 <motion.div key={index} className={styles.libox} layout
                                             style={{display: typesName === "flex" ? "flex" : "block"}}>

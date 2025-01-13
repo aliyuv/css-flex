@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import {BrowserRouter, Route, Routes} from "react-router";
 import FlexDirection from "./components/FlexDirection.tsx";
 import FlexType from "./components/FlexType.tsx";
+import FlexTypeV from "./components/FlexTypeV.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/" element={<App />} />
             <Route path="fd" element={<FlexDirection />} />
             <Route path="flextype" element={<FlexType />}/>
+            <Route path="flextypeV" element={<FlexTypeV />}/>
             <Route path="flexdirection" element={<FlexDirection />}/>
         </Routes>
     </BrowserRouter>
