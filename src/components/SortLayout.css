@@ -5,7 +5,12 @@
 }
 
 .sl-container{
+    width: 100%;
+    max-width: 800px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .sl-box{
@@ -17,8 +22,68 @@
     margin: 20px;
     background-color: red;
 }
+
+.sl-box:nth-child(1){
+    background-color: darkblue;
+}
+
+.sl-box:nth-child(2){
+    background-color: lightblue;
+}
+
+.sl-box:nth-child(3){
+    background-color: darkorange;
+}
+
+.sl-box:nth-child(4){
+    background-color: lightsalmon;
+}
+
+.sl-box:nth-child(5){
+    background-color: lightseagreen;
+}
+
+.sl-box:nth-child(6){
+    background-color: lightgreen;
+}
+
+.sl-box:nth-child(7){
+    background-color: seagreen;
+}
+
+.sl-box:nth-child(8){
+    background-color: lightseagreen;
+}
+
+.sl-box:nth-child(9){
+    background-color: lightseagreen;
+}
+
+.sl-box:nth-child(10){
+    background-color: lightseagreen;
+}
+
+.sl-box:nth-child(11){
+    background-color: lightseagreen;
+}
+
+.sl-box:nth-child(12){
+    background-color: lightseagreen;
+}
+
+.sl-box:nth-child(13){
+    background-color: lightseagreen;
+}
+
+.sl-box:nth-child(14){
+    background-color: lightseagreen;
+}
+
+.sl-box:nth-child(15){
+    background-color: lightseagreen;
+}
 .sl-btn{
-    width:50px;
-    height: 50px;
+    width:80px;
+    height: 80px;
     border: 1px solid #000;
 }
