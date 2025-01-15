@@ -1,95 +1,72 @@
-.fv-container{
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    border: 1px solid red;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.fv-container {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.fv-container .fv-box{
-    width: 100%;
-    height: 500px;
-    border-radius: 4px;
-    padding: 4px;
-    display: block;
-    border: 1px solid #000;
+.fv-box {
+  width: 100%;
+  height: 500px;
+  border-radius: 4px;
+  padding: 4px;
+  display: block;
+  border: 1px solid #000;
 }
 
-.fv-container .fv-box .fv-list{
-    border: 2px solid silver;
-}
-/*.fv-container .fv-box[data-layout = 'block']{*/
-/*    display: block;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    gap: 10px;*/
-
-/*}*/
-/*.fv-container .fv-box[data-layout = 'flex']{*/
-
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    align-items: center;*/
-/*    flex: 1;*/
-/*    gap: 10px;*/
-
-/*}*/
-
-.fv-display{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 14px 12px;
-    gap: 14px;
-    position: relative;
+.fv-box-shadow {
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-.fv-display .fv-btn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 8px;
-    position: relative;
-    transition: left 0.3s ease, width 0.3s ease;
-}
-.fv-display .fv-btn .fv-bottom-line{
-    width: 100%;
-    background-color: black;
-    height: 1px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-.App {
-    font-family: sans-serif;
-    text-align: center;
+.fv-box .fv-box-item {
+  position: absolute;
+  padding: 4px;
 }
 
-.tab-buttons button {
-           padding: 10px 20px;
-           background-color: lightgray;
-           border: none;
-           cursor: pointer;
-           margin: 0 5px;
-       }
+.fv-box-shadow .fv-box-item {
+  position: relative;
+}
 
-.tab-buttons button.active {
-           background-color: gray;
-           color: white;
-       }
+.fv-container .fv-box-inner {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border: 1px dashed red;
+  border-radius: 2px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.tab-contents div {
-           margin-top: 20px;
-           padding: 20px;
-           border: 1px solid gray;
-       }
+.fv-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 12px;
+  gap: 14px;
+  position: relative;
+}
 
-.tab-contents div.hidden {
-           display: none;
-       }
-
+.fv-display .fv-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  position: relative;
+}
+.fv-display .fv-btn .fv-bottom-line {
+  width: 100%;
+  background-color: black;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 4px;
+  transition: height 0.3s ease-in-out;
+}

@@ -1,23 +1,34 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './FlexTypeV.css'
 
-function FlexTypeV() {
+export default function FlexTypeV() {
   const world = ['A', 'B', 'C', 'D']
   const types = ['block', 'flex']
-  // const [type, setType] = useState('block')
+  const [active, setActive] = useState<string>('block')
   const typeRef = useRef<string>('block')
-
-  // flip思想 f 先获取元素 以及记录元素初始位置
   const containerRef = useRef<HTMLDivElement>(null)
-  const boxRef = useRef<HTMLDivElement>(null)
+  const shadowRef = useRef<HTMLDivElement>(null)
   const ref = useRef<any>({})
 
   useEffect(() => {
-    // 初始位置
-    ref.current.record = (container) => {
-      // 记录初始位置
+    // 获取影子盒子容器的具体位置信息
+    if (shadowRef.current && containerRef.current) {
+      const box = Array.from(containerRef.current.children) as HTMLElement[]
+      const shadowbox = Array.from(shadowRef.current.children) as HTMLElement[]
+      const shadow_rect = shadowRef.current.getBoundingClientRect()
+
+      shadowbox.forEach((item, i) => {
+        const rect = item.getBoundingClientRect()
+        box[i].style.width = `${rect.width}px`
+        box[i].style.height = `${rect.height}px`
+        box[i].style.left = `${rect.x - shadow_rect.x}px`
+        box[i].style.top = `${rect.y - shadow_rect.y}px`
+      })
+    }
+
+    ref.current.record = (container: HTMLDivElement) => {
       const box = Array.from(container.children)
-      box.forEach((item, index) => {
+      box.forEach((item) => {
         const rect = item.getBoundingClientRect()
         item.firstX = rect.x
         item.firstY = rect.y
@@ -26,29 +37,29 @@ function FlexTypeV() {
       })
     }
 
-    ref.current.change = (container) => {
+    ref.current.change = (shadow: HTMLDivElement) => {
       if (typeRef.current === 'block') {
-        container.style.display = 'flex'
+        shadow.style.display = 'flex'
         typeRef.current = 'flex'
       }
       else if (typeRef.current === 'flex') {
-        container.style.display = 'block'
+        shadow.style.display = 'block'
         typeRef.current = 'block'
       }
     }
 
-    ref.current.play = (container) => {
-      const box = Array.from(container.children)
+    ref.current.play = (shadow: HTMLDivElement, container: HTMLDivElement) => {
+      const shadowbox = Array.from(shadow.children)
       const arr = []
-      box.forEach((item, index) => {
+      shadowbox.forEach((item) => {
         const rect = item.getBoundingClientRect()
         const lastX = rect.x
         const lastY = rect.y
         const lastW = rect.width
         const lastH = rect.height
 
-        const dx = item.firstX - lastX
-        const dy = item.firstY - lastY
+        const dx = lastX - item.firstX
+        const dy = lastY - item.firstY
         arr.push({
           dx,
           dy,
@@ -58,20 +69,32 @@ function FlexTypeV() {
           lastH,
         })
       })
+
+      const box = Array.from(container.children)
       box.forEach((item, i) => {
+        const current_info = arr[i]
+        let targetX = arr[i].dx
+        let targetY = arr[i].dy
+
+        if (typeRef.current === 'block') {
+          targetX = 0
+          targetY = 0
+        }
+
         item.animate([
           {
-            transform: `translate(${arr[i].dx}px, ${arr[i].dy}px)`,
-            width: `${arr[i].firstW}px`,
-            height: `${arr[i].firstH}px`,
+            transform: window.getComputedStyle(item, null).getPropertyValue('transform'),
+            width: window.getComputedStyle(item, null).getPropertyValue('width'),
+            height: window.getComputedStyle(item, null).getPropertyValue('height'),
           },
           {
-            transform: `translate(${0}px, ${0}px)`,
-            width: `${arr[i].lastW}px`,
-            height: `${arr[i].lastH}px`,
+            transform: `translate(${targetX}px, ${targetY}px)`,
+            width: `${current_info.lastW}px`,
+            height: `${current_info.lastH}px`,
           },
         ], {
-          duration: 30000,
+          duration: 800,
+          fill: 'forwards',
         })
       })
     }
@@ -82,8 +105,19 @@ function FlexTypeV() {
       <div className="fv-container">
         <div className="fv-box" ref={containerRef}>
           {world.map((item, i) => (
-            <div className="fv-list box" key={i}>
-              <span>{item}</span>
+            <div className="fv-box-item" key={i}>
+              <div className="fv-box-inner" key={i}>
+                <span>{item}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="fv-box fv-box-shadow" ref={shadowRef}>
+          {world.map((item, i) => (
+            <div className="fv-box-item" key={i}>
+              <div className="fv-box-inner">
+                <span>{item}</span>
+              </div>
             </div>
           ))}
         </div>
@@ -93,22 +127,20 @@ function FlexTypeV() {
             types.map((item, i) => (
               <div className="fv-btn" key={i}>
                 <button onClick={() => {
-                  ref.current.record(containerRef.current)
-                  ref.current.change(containerRef.current)
-                  ref.current.play(containerRef.current)
+                  ref.current.record(shadowRef.current)
+                  ref.current.change(shadowRef.current)
+                  ref.current.play(shadowRef.current, containerRef.current)
+                  setActive(item)
                 }}
                 >
                   {item}
                 </button>
-                <div className="fv-bottom-line"></div>
+                <div className="fv-bottom-line" style={{ height: active === item ? 2 : 1 }}></div>
               </div>
             ))
           }
         </div>
       </div>
-      {/* <SortLayout/> */}
     </>
   )
 }
-
-export default FlexTypeV
