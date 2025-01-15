@@ -10,7 +10,7 @@ function SortLayout() {
             if (container.current) {
                 // 获取父元素的子元素数组
                 const childrenArray = Array.from(container.current.children);
-                childrenArray.map((item:Element)=>{
+                childrenArray.forEach((item:Element)=>{
                     const rect = item.getBoundingClientRect();
                     item.firstX = rect.left;
                     item.firstY = rect.top;
@@ -22,7 +22,7 @@ function SortLayout() {
         function change(container: React.RefObject<HTMLDivElement>){
             const childrenArray = Array.from(container.current!.children);
             const len = childrenArray.length;
-            childrenArray.map((item,i)=>{
+            childrenArray.forEach((item,i)=>{
                 const newIndex = Math.floor(Math.random() * len)
                 if (newIndex !== i){
                     const nextDOM = item.nextElementSiblin
@@ -34,7 +34,7 @@ function SortLayout() {
 
         function play(container: React.RefObject<HTMLDivElement>){
             const childrenArray = Array.from(container.current!.children)
-            childrenArray.map((item)=>{
+            childrenArray.forEach((item)=>{
                 const itemPos = item.getBoundingClientRect();
                 const lastX = itemPos.left;
                 const lastY = itemPos.top;
