@@ -96,6 +96,10 @@ export default function FlexTypeV() {
           targetX = 0
           targetY = 0
         }
+        // else if (typeRef.current === 'flex') {
+        //   targetX = 0
+        //   targetY = 0
+        // }
 
         item.animate([
           {
@@ -109,7 +113,7 @@ export default function FlexTypeV() {
             height: `${current_info.lastH}px`,
           },
         ], {
-          duration: 800,
+          duration: 480,
           fill: 'forwards',
         })
       })
@@ -138,7 +142,7 @@ export default function FlexTypeV() {
           ))}
         </div>
         <div className="fv-display">
-          <div>display:</div>
+          <div className="fv-des">display:</div>
           {
             types.map((item, i) => (
               <div className="fv-btn" key={i}>
@@ -149,16 +153,13 @@ export default function FlexTypeV() {
                     ref.current.play(shadowRef.current, containerRef.current)
                     setActive(item)
                   }}
-                  style={{
-                    color: active === item ? 'red' : 'saddlebrown',
-                    opacity: active === item ? 1 : 0.5,
-                  }}
+                  style={{ opacity: active === item ? 1 : 0.6 }}
                 >
                   {item}
                 </button>
                 <div
                   className="fv-bottom-line"
-                  style={{ height: active === item ? 2 : 1 }}
+                  style={{ height: active === item ? 4 : 1, filter: active === item ? 'saturate(100%)' : 'saturate(0%)' }}
                 >
                 </div>
               </div>
