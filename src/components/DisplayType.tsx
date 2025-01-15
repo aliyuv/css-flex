@@ -1,12 +1,9 @@
-
 function DisplayType() {
+  return (
+    <>
 
-
-    return (
-        <>
-
-        </>
-    )
+    </>
+  )
 }
 
-export default DisplayType;
+export default DisplayType
