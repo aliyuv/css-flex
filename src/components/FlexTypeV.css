@@ -59,7 +59,9 @@
   justify-content: center;
   padding: 10px 8px;
   position: relative;
+  transition: color 0.2s ease;
 }
+
 .fv-display .fv-btn .fv-bottom-line {
   width: 100%;
   background-color: black;

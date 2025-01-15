@@ -1,6 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 import './FlexTypeV.css'
 
+interface AnimatedElement extends Element {
+  firstX: number
+  firstY: number
+  firstW: number
+  firstH: number
+}
+
+interface AnimationInfo {
+  dx: number
+  dy: number
+  firstW: number
+  lastW: number
+  firstH: number
+  lastH: number
+}
+
 export default function FlexTypeV() {
   const world = ['A', 'B', 'C', 'D']
   const types = ['block', 'flex']
@@ -27,7 +43,7 @@ export default function FlexTypeV() {
     }
 
     ref.current.record = (container: HTMLDivElement) => {
-      const box = Array.from(container.children)
+      const box = Array.from(container.children) as AnimatedElement[]
       box.forEach((item) => {
         const rect = item.getBoundingClientRect()
         item.firstX = rect.x
@@ -49,9 +65,9 @@ export default function FlexTypeV() {
     }
 
     ref.current.play = (shadow: HTMLDivElement, container: HTMLDivElement) => {
-      const shadowbox = Array.from(shadow.children)
-      const arr = []
-      shadowbox.forEach((item) => {
+      const shadowbox = Array.from(shadow.children) as AnimatedElement[]
+      const arr: AnimationInfo[] = []
+      shadowbox.forEach((item: AnimatedElement) => {
         const rect = item.getBoundingClientRect()
         const lastX = rect.x
         const lastY = rect.y
@@ -126,16 +142,25 @@ export default function FlexTypeV() {
           {
             types.map((item, i) => (
               <div className="fv-btn" key={i}>
-                <button onClick={() => {
-                  ref.current.record(shadowRef.current)
-                  ref.current.change(shadowRef.current)
-                  ref.current.play(shadowRef.current, containerRef.current)
-                  setActive(item)
-                }}
+                <button
+                  onClick={() => {
+                    ref.current.record(shadowRef.current)
+                    ref.current.change(shadowRef.current)
+                    ref.current.play(shadowRef.current, containerRef.current)
+                    setActive(item)
+                  }}
+                  style={{
+                    color: active === item ? 'red' : 'saddlebrown',
+                    opacity: active === item ? 1 : 0.5,
+                  }}
                 >
                   {item}
                 </button>
-                <div className="fv-bottom-line" style={{ height: active === item ? 2 : 1 }}></div>
+                <div
+                  className="fv-bottom-line"
+                  style={{ height: active === item ? 2 : 1 }}
+                >
+                </div>
               </div>
             ))
           }
