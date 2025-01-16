@@ -113,8 +113,9 @@ export default function FlexTypeV() {
             height: `${current_info.lastH}px`,
           },
         ], {
-          duration: 480,
+          duration: 600,
           fill: 'forwards',
+          easing: 'ease',
         })
       })
     }

@@ -1,7 +1,5 @@
 .fv-container {
-  width: 900px;
-  height: 600px;
-  position: relative;
+  max-width: 900px;
   margin: 15px auto;
   display: flex;
   flex-direction: column;
@@ -13,13 +11,12 @@
 }
 
 .fv-box {
-  width: 100%;
+  position: relative;
+  width: 700px;
   height: 500px;
   border-radius: 4px;
-  padding: 36px;
   display: block;
   border: 1px solid #454d54;
-
 }
 
 .fv-box-shadow {
@@ -67,13 +64,14 @@
   justify-content: center;
   padding: 10px 8px;
   position: relative;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ;
 
 }
 .fv-display .fv-btn button {
   font-size: 1rem;
   font-weight: 600;
   color: #e3e6e8;
+  cursor: pointer;
 }
 .fv-display .fv-btn .fv-bottom-line {
   width: 100%;
@@ -83,7 +81,7 @@
   bottom: 0;
   left: 0;
   border-radius: 4px;
-  transition: all 0.3s ;
+  transition: all 0.3s ease-in-out;
 }
 
 .fv-des{
