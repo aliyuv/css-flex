@@ -47,9 +47,6 @@ function FlexDirection() {
                 className="fd-inner"
                 key={index}
                 initial={{ borderRadius: 4 }}
-                style={{
-                  backgroundColor: 'rgb(117, 128, 138)',
-                }}
               >
                 <motion.li
                   layout

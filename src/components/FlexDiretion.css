@@ -10,7 +10,7 @@
 }
 
 .iconfont {
-    font-family: "iconfont" !important;
+    font-family: "iconfont", serif !important;
     font-size: 40px;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
@@ -41,19 +41,21 @@
 .fd-inner{
     display: flex;
     align-self: stretch;
-    transform: none;
     padding: 2px;
-
+    color: #e3e6e8;
+    transform: none;
+    background-color: #75808a;
 }
+
 .fd-flexContent ul li{
     padding: 10px 16px;
     height:auto;
-    color: #e3e6e8;
-    background-color: rgb(26, 31, 35);
+    background-color: #1a1f23;
     display: flex;
     align-self: stretch;
     border-radius: 8px;
 }
+
 .fd-flextype{
     width: 100%;
     display: flex;
