@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 .fv-container {
   max-width: 800px;
   margin: 15px auto;
@@ -8,29 +11,26 @@
   background-color: #0d0f12;
   padding: 32px;
   border-radius: 6px;
+  position: relative;
 }
 
 .fv-box {
-  width:750px;
-  position: relative;
+  width: 100%;
   height: 300px;
   border-radius: 4px;
   border: 1px solid #454d54;
-  display: block;
-  padding: 2px;
-  gap: 2px;
+  position: absolute;
 }
 
 .fv-box-shadow {
   visibility: hidden;
-  position: absolute;
-  left: 0;
-  top: 0;
+  position: static;
+  padding: 3px;
+  gap: 3px;
 }
 
 .fv-box .fv-box-item {
   position: absolute;
-  text-align: center;
 }
 
 .fv-box-shadow .fv-box-item {
@@ -41,12 +41,11 @@
   width: 100%;
   height: 100%;
   padding: 12px;
-  border: 3px solid #75808a;
+  border: 2px solid #75808a;
   border-radius: 2px;
-  min-width: 60px;
   color: #e3e6e8;
   background-color: rgb(26, 31, 35);
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .fv-display {

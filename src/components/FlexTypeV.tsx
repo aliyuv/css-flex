@@ -32,6 +32,10 @@ export default function FlexTypeV() {
       const box = Array.from(containerRef.current.children) as HTMLElement[]
       const shadowbox = Array.from(shadowRef.current.children) as HTMLElement[]
       const shadow_rect = shadowRef.current.getBoundingClientRect()
+      containerRef.current.style.width = `${shadow_rect.width}px`
+      containerRef.current.style.height = `${shadow_rect.height}px`
+      containerRef.current.style.top = `${32}px`
+      containerRef.current.style.left = `${32}px`
 
       shadowbox.forEach((item, i) => {
         const rect = item.getBoundingClientRect()
@@ -130,9 +134,6 @@ export default function FlexTypeV() {
               <div
                 className="fv-box-inner"
                 key={i}
-                style={{
-                  textAlign: active === 'block' ? 'left' : 'center',
-                }}
               >
                 <span>{item}</span>
               </div>
