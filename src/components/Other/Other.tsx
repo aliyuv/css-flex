@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import { useState } from 'react'
-import DisplayType from './DisplayType.tsx'
+import DisplayType from '../DisplayType/DisplayType.tsx'
 
 function Other() {
   const [rangeValueX, setRangeValueX] = useState(0)

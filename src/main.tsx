@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import App from './App.tsx'
-import FlexDirection from './components/FlexDirection.tsx'
-import FlexType from './components/FlexType.tsx'
-import FlexTypeV from './components/FlexTypeV.tsx'
+import FlexDirection from './components/FlexDiretion/FlexDirection.tsx'
+import FlexType from './components/FlexType/FlexType.tsx'
+import FlexTypeV from './components/FlexTypeV/FlexTypeV.tsx'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
