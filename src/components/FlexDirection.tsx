@@ -6,8 +6,8 @@ function FlexDirection() {
   const typeValues = ['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly']
   const worlds = ['Hello', 'to', 'the', 'World']
   const [justify, setJustify] = useState<'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'>('flex-start')
-  const [direction, setDirection] = useState<'row' | 'column'>('row')
-  const directions = [`row`, `column`]
+  const [direction, setDirection] = useState<'column' | 'row'>('column')
+  const directions = [`column`, `row`]
   const [isOn, setIsOn] = useState(false)
   const toggleSwitch = () => setIsOn(!isOn)
   const spring = {
@@ -31,29 +31,44 @@ function FlexDirection() {
           </div>
           <span>Show Primary Axis</span>
         </div>
-        <div className="fd-flexContent">
-          <motion.ul style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: justify,
-            flexDirection: direction,
-            position: 'relative',
-          }}
+        <motion.div className="fd-flexContent" layout>
+          <motion.ul
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: justify,
+              flexDirection: direction,
+              position: 'relative',
+            }}
           >
             {worlds.map((item, index) => (
-              <motion.li
+              <motion.div
+                layout
+                className="fd-inner"
                 key={index}
-                layout="preserve-aspect"
+                initial={{ borderRadius: 4 }}
                 style={{
-                  height: direction === 'column' ? '50px' : '100%',
-                  width: direction === 'column' ? '100%' : '100px',
-                  outline: ' 1px solid  rgb(230, 232, 240)',
-                  borderRadius: '10px',
+                  backgroundColor: 'rgb(117, 128, 138)',
                 }}
               >
-                {item}
-              </motion.li>
-
+                <motion.li
+                  layout
+                  initial={{ borderRadius: 2 }}
+                  style={{
+                    height: direction === 'column' ? 'auto' : '100%',
+                    width: direction === 'column' ? '100%' : 'auto',
+                  }}
+                >
+                  <motion.span
+                    layout="preserve-aspect"
+                    style={{
+                      fontSize: item === 'Hello' || item === 'World' ? '1.375rem' : '',
+                    }}
+                  >
+                    {item}
+                  </motion.span>
+                </motion.li>
+              </motion.div>
             ))}
             <motion.div
               className="fd-primary-axis"
@@ -82,7 +97,7 @@ function FlexDirection() {
             </motion.div>
           </motion.ul>
 
-        </div>
+        </motion.div>
         <div className="fd-flextype">
           <div className="fd-flexmenu">
             <span>flex-direction:</span>
