@@ -18,7 +18,7 @@ interface AnimationInfo {
 }
 
 export default function FlexTypeV() {
-  const world = ['A', 'B', 'C', 'D']
+  const world = ['Hello', 'to', 'the', 'world']
   const types = ['block', 'flex']
   const [active, setActive] = useState<string>('block')
   const typeRef = useRef<string>('block')
@@ -96,7 +96,7 @@ export default function FlexTypeV() {
           targetX = 0
           targetY = 0
         }
-        // else if (typeRef.current === 'flex') {
+        // if (typeRef.current === 'flex') {
         //   targetX = 0
         //   targetY = 0
         // }
@@ -113,7 +113,7 @@ export default function FlexTypeV() {
             height: `${current_info.lastH}px`,
           },
         ], {
-          duration: 600,
+          duration: 500,
           fill: 'forwards',
           easing: 'ease',
         })
@@ -127,7 +127,13 @@ export default function FlexTypeV() {
         <div className="fv-box" ref={containerRef}>
           {world.map((item, i) => (
             <div className="fv-box-item" key={i}>
-              <div className="fv-box-inner" key={i}>
+              <div
+                className="fv-box-inner"
+                key={i}
+                style={{
+                  textAlign: active === 'block' ? 'left' : 'center',
+                }}
+              >
                 <span>{item}</span>
               </div>
             </div>
