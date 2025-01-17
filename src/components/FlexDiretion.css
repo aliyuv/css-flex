@@ -135,14 +135,17 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .fd-secondary-axis svg{
     display: block;
-    width: 32px;
+    width:16px;
+    height: 16px;
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 8px;
+    bottom: 8px;
     right: 0;
 }
+
 .fd-line{
     background-color: #e3e6e8;
     height:2px;
@@ -157,14 +160,11 @@
 
 .fd-paxis{
     position: relative;
-    margin-bottom: 6px;
-    padding-top: 4px;
     color: white;
-    font-size: 17px;
     font-weight: bold;
     white-space: nowrap;
     align-self: flex-end;
-    margin-right: 30px;
+    margin-right: 24px;
 }
 
 .switch {
@@ -173,9 +173,8 @@
     height: 2px;
     width: 44px;
     padding: 2px 0;
-    /*background-color: rgb(26, 31, 35);*/
-    background-color: rgb(69, 77, 84);
-    border-radius: 5px;
+    background-color: #454d54;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -205,9 +204,8 @@
 .fd-switch span {
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: 15px;
     height: 100%;
-    line-height: 40px;
 }
 
 

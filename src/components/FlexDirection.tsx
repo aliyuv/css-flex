@@ -101,7 +101,7 @@ function FlexDirection() {
                   className="agwqywx"
                   fill="none"
                   stroke="#e3e6e8"
-
+                  strokeWidth="2"
                 >
                   <path
                     d="
