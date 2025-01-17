@@ -15,13 +15,14 @@ function FlexDirection() {
     stiffness: 700,
     damping: 30,
   }
+
   return (
     <>
       <div className="fd-flexdir">
         <div className="fd-switch">
           <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
             <motion.div
-              className="handle"
+              className="fd-handle"
               layout
               transition={spring}
               style={{
@@ -59,7 +60,7 @@ function FlexDirection() {
                   <motion.span
                     layout="preserve-aspect"
                     style={{
-                      fontSize: item === 'Hello' || item === 'World' ? '1.375rem' : '',
+                      fontSize: item === 'Hello' || item === 'World' ? '22px' : '',
                     }}
                   >
                     {item}
@@ -75,11 +76,10 @@ function FlexDirection() {
               }}
               style={{
                 transform: direction === 'column' ? 'translate(-50%,-50%) rotate(-630deg)' : 'translate(-50%, -50%)',
-                transformOrigin: 'center',
                 position: 'absolute',
-                left: '50%',
                 top: '50%',
-                width: direction === 'column' ? '400px' : '800px',
+                left: '50%',
+                width: direction === 'column' ? `calc(100% - 470px)` : 'calc(100% - 4px)',
               }}
               transition={{
                 duration: 0.3,
@@ -88,8 +88,32 @@ function FlexDirection() {
             >
               <span className="fd-paxis">Primary Axis</span>
               <div className="fd-secondary-axis">
-                <div className="fd-line"></div>
-                <i className="iconfont icon-jiantou jiantou"></i>
+                <div></div>
+                <div
+                  className="fd-line"
+                  style={{
+                  }}
+                >
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  className="agwqywx"
+                  fill="none"
+                  stroke="#e3e6e8"
+
+                >
+                  <path
+                    d="
+      M 8 0
+      L 16 8
+      L 8 16
+    "
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                  </path>
+                </svg>
               </div>
             </motion.div>
           </motion.ul>
@@ -113,9 +137,9 @@ function FlexDirection() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="rgb(227, 230, 232)"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="lucide lucide-chevron-down"
               >
                 <path d="m6 9 6 6 6-6"></path>
@@ -142,9 +166,9 @@ function FlexDirection() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="rgb(227, 230, 232)"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="lucide lucide-chevron-down"
               >
                 <path d="m6 9 6 6 6-6"></path>
