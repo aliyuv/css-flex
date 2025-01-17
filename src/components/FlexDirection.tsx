@@ -105,6 +105,22 @@ function FlexDirection() {
                 ))
               }
             </select>
+            <div className="fd-svg-arrow">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgb(227, 230, 232)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-chevron-down"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </div>
           </div>
           <div className="fd-flexmenu">
             <span>just-content:</span>
@@ -118,6 +134,22 @@ function FlexDirection() {
                 ))
               }
             </select>
+            <div className="fd-svg-arrow">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgb(227, 230, 232)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-chevron-down"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </div>
           </div>
         </div>
       </div>

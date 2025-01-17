@@ -22,9 +22,22 @@
     content: "\e7a7";
 }
 
-.fd-flexContent{
+.fd-flexdir{
     width: 800px;
+    background-color: rgb(13, 15, 18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 10px;
 }
+
+.fd-flexContent{
+    width: 100%;
+}
+
 .fd-flexContent ul{
     max-width: 100%;
     display: flex;
@@ -35,7 +48,7 @@
     border: 1px solid #454d54;
     border-radius: 4px;
     height: 300px;
-    padding:2px;
+    padding:4px;
 }
 
 .fd-inner{
@@ -58,36 +71,35 @@
 
 .fd-flextype{
     width: 100%;
-    display: flex;
-    justify-content:space-around;
-    align-items: center;
-    margin-top: 10px;
-    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 15px;
 }
 
 .fd-flexmenu{
-    width: 100%;
-   display: flex;
-    justify-content: center;
+    display: flex;
     align-items: baseline;
-    padding: 10px;
-    line-height: 15px;
+    gap:16px;
+    font-size: 16px;
+    position: relative;
 }
+
 .fd-flexmenu span{
-    color: white;
-    font-size: 18px;
+    color: rgb(227, 230, 232);
+    font-weight: 500;
 }
 
 .fd-flexmenu select{
+    font-size: 16px;
     color: white;
-    font-size: 18px;
-    margin-left: 12px;
-    height:40px;
-    border-radius: 10px;
-    outline: 2px solid #e3e6e8;
-    flex: 1;
+    border-radius: 4px;
+    outline: 1px solid #e3e6e8;
     background-color: rgb(26, 31, 35);
-   padding: 4px 4px;
+    padding: 8px 52px 8px 12px;
+    min-height: 40px;
+    flex-grow: 1;
+    -webkit-appearance:none
 }
 
 .fd-flexmenu select:hover {
@@ -98,16 +110,15 @@
     outline-color: #fff;
 }
 
-.fd-flexdir{
-    width: 960px;
-    background-color: rgb(13, 15, 18);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 15px auto;
-    padding: 20px;
-    border-radius: 10px;
+.fd-svg-arrow{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 10px;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
 }
 
 .fd-primary-axis{
