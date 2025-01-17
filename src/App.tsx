@@ -9,6 +9,7 @@ function App() {
         <Link to="/flextype">案列1</Link>
         <Link to="/flexdirection">案列2</Link>
         <Link to="/flextypev">案列3</Link>
+        <Link to="/flexgrow">案例4</Link>
       </nav>
     </>
   )
