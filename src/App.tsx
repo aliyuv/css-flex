@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router'
 import './App.css'
+import './assets/font/stylesheet.css'
 
 function App() {
   return (

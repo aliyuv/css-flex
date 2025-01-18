@@ -1,0 +1,143 @@
+.fg-container{
+  width: 800px;
+  margin: 20px auto;
+  background-color: #0d0f12;
+  border-radius: 6px;
+  border: solid 1px #454d54;
+  padding: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fg-content{
+  width: 680px;
+  height: 240px;
+  outline: 1px solid #454d54;
+  border-radius: 4px;
+  padding: 4px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.fg-box{
+  height: 100%;
+  color: #e3e6e8;
+  background-color:#454d54;
+  border: 2px solid #9ca8b4;
+  transition: background 200ms;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.fg-box.f1{
+}
+
+.fg-top-line{
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  height: 10px;
+  width: calc(100% - 8px);
+  background: linear-gradient(0deg, transparent, #fff);
+  border-radius: 9px 9px 32px 32px;
+  opacity: .1;
+}
+
+.fg-box-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.fg-desc{
+  font-family: "Cartograph CF",monospace,serif;
+  font-size: calc(1rem - .2rem);
+}
+
+.fg-mid-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 3rem;
+  height: 5rem;
+
+}
+
+.fg-mid-content .fg-separator{
+  position: absolute;
+  top: 52%;
+  left: 0;
+  right: 0;
+  width: 80%;
+  height: 2px;
+  margin: auto;
+  border-radius: 1000px;
+  transform: rotate(-20deg);
+  background-color: #e3e6e8;
+}
+
+.fg-numerator{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 20%;
+  height: calc(5rem *.5);
+  font-size: calc(5rem *.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fg-denominator{
+  position: absolute;
+  top: calc(5rem *.525);
+  left: 25%;
+  right: 0;
+  font-size: calc(5rem *.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fg-btns{
+  display: flex;
+  gap: 2px;
+}
+
+.fg-btns button{
+  display: grid;
+  place-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  background-color: #75808a;
+  color: #e3e6e8;
+  cursor: pointer;
+}
+
+.fg-btns button:not(:disabled):hover{
+  background-color: rgba(255, 213, 0, .5);
+}
+
+.fg-btns button:first-of-type{
+  border-radius: 6px 2px 2px 6px;
+}
+
+.fg-btns button:last-of-type{
+  border-radius: 2px 6px 6px 2px;
+}
