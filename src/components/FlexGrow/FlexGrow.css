@@ -18,7 +18,7 @@
   padding: 4px;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 4px;
 }
@@ -28,13 +28,14 @@
   color: #e3e6e8;
   background-color:#454d54;
   border: 2px solid #9ca8b4;
-  transition: background 200ms;
   border-radius: 2px;
+  padding: 10px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1 1 auto;
   position: relative;
+  transition: flex-grow 0.4s ease-in-out,background-color 200ms ease-in-out;
 }
 
 .fg-box.f1{
@@ -128,6 +129,11 @@
   background-color: #75808a;
   color: #e3e6e8;
   cursor: pointer;
+}
+
+.fg-btns button:disabled{
+  cursor: not-allowed;
+  opacity: .45;
 }
 
 .fg-btns button:not(:disabled):hover{
