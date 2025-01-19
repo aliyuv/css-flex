@@ -20,7 +20,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
 }
 
 .fg-box{
@@ -36,9 +36,6 @@
   flex: 1 1 auto;
   position: relative;
   transition: flex-grow 0.4s ease-in-out,background-color 200ms ease-in-out;
-}
-
-.fg-box.f1{
 }
 
 .fg-top-line{

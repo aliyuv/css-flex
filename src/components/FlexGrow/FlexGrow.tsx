@@ -140,7 +140,7 @@ export default function FlexGrow() {
                 style={{
                   flexGrow: flexGrowMap[childId],
                   backgroundColor: totalGrow !== 0 && flexGrowMap[childId] !== 0 ? '#454d54' : '#1a1f23',
-                  borderColor: isDisabled(childId) ? '#454d54' : '#1a1f23',
+                  borderColor: isDisabled(childId) ? '#454d54' : '#9ca8b4',
                 }}
               >
                 <div className="fg-top-line"></div>
