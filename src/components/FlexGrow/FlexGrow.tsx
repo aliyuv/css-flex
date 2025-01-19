@@ -157,7 +157,13 @@ export default function FlexGrow() {
                         )
                       : (
                           <div className="fg-mid-content">
-                            <span className="fg-denominator">
+                            <span
+                              className="fg-denominator"
+                              style={{
+                                top: isDisabled(childId) ? '16px' : '',
+                                fontSize: isDisabled(childId) ? '2rem' : '',
+                              }}
+                            >
                               {flexGrowMap[childId]}
                             </span>
                           </div>
