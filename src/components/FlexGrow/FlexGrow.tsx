@@ -177,7 +177,7 @@ export default function FlexGrow() {
                       }}
                       disabled={isDisabled(childId)}
                       style={{
-                        backgroundColor: isDisabled(childId) ? '#454d54' : '#75808a',
+                        backgroundColor: isDisabled(childId) ? '#454d54' : undefined,
                       }}
                     >
                       <svg
