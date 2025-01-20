@@ -11,6 +11,7 @@ function App() {
         <Link to="/flexdirection">案列2</Link>
         <Link to="/flextypev">案列3</Link>
         <Link to="/flexgrow">案例4</Link>
+        <Link to="/gridarea">案例5</Link>
       </nav>
     </>
   )
