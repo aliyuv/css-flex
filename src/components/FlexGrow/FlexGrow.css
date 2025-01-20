@@ -35,7 +35,7 @@
   align-items: center;
   flex: 1 1 auto;
   position: relative;
-  transition: flex-grow 0.4s ease-in-out,background-color 200ms ease-in-out;
+  transition: flex-grow 0.4s ease,background-color 200ms ease;
 }
 
 .fg-top-line{

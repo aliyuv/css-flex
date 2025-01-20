@@ -160,8 +160,8 @@ export default function FlexGrow() {
                             <span
                               className="fg-denominator"
                               style={{
-                                top: isDisabled(childId) ? '16px' : '',
-                                fontSize: isDisabled(childId) ? '2rem' : '',
+                                top: isDisabled(childId) ? '16px' : undefined,
+                                fontSize: isDisabled(childId) ? '2rem' : undefined,
                               }}
                             >
                               {flexGrowMap[childId]}
