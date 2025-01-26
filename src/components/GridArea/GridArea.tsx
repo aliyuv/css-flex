@@ -13,7 +13,7 @@ export default function GridArea() {
   const [containerNamec, setContainerNamec] = useState('ga-sidebar')
   const containerRef = useRef<HTMLDivElement>(null)
   const lastPosRef = useRef<PositionData | null>(null)
-
+  const animationRef = useRef<Animation | null>(null) // 新增动画引用
   // 安全计算比例（防止除以零）
   const safeScale = (oldVal: number, newVal: number) => {
     return newVal === 0 ? 1 : oldVal / newVal
@@ -22,6 +22,11 @@ export default function GridArea() {
   const runFLIPAnimation = () => {
     if (!containerRef.current || !lastPosRef.current)
       return
+
+    // 中止之前的动画
+    if (animationRef.current) {
+      animationRef.current.cancel()
+    }
 
     const element = containerRef.current
     const first = lastPosRef.current
@@ -50,7 +55,8 @@ export default function GridArea() {
         transform: 'translate(0, 0) scale(1, 1)',
       },
     ], {
-      duration: 500,
+      // 添加最小动画时间
+      duration: Math.max(300, 500 * Math.abs(scaleX - 1)),
       easing: 'ease-in-out',
       fill: 'both',
     })
