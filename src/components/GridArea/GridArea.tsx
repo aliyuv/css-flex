@@ -1,25 +1,25 @@
+import { useState } from 'react'
 import './GridArea.css'
 
 export default function GridArea() {
   const containerName = ['sidebar', 'header', 'main']
+  const [containerNamec, setContainerNamec] = useState('sidebar')
   return (
     <>
       <div className="ga-contaniner">
         <div className="ga-contaniner-box">
           <div className="ga-tabs">
             <div className="ga-dec">
-              <span>
-                Grid Area
-                <span>:</span>
-              </span>
+              <span>Grid Area</span>
+              <span>:</span>
             </div>
             <div className="ga-items">
               {
                 containerName.map((item, i) => {
                   return (
-                    <div className="ga-box" key={i}>
+                    <div className="ga-box" key={i} onClick={() => { setContainerNamec(item) }}>
                       <div className="ga-box-dec">{item}</div>
-                      <div className="ga-bottomLine"></div>
+                      <div className={`ga-bottomLine ${containerNamec === item ? 'active' : 'inactive'}`}></div>
                     </div>
                   )
                 })
