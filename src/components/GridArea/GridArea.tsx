@@ -122,7 +122,7 @@ export default function GridArea() {
                       key={i}
                       onClick={() => handleClick(item.id)}
                     >
-                      <div className="ga-box-dec">{item.name}</div>
+                      <div className="ga-box-dec" style={{ opacity: active === item.id ? 1 : 0.8 }}>{item.name}</div>
                       <div className={`ga-bottomLine ${active === item.id ? 'active' : 'inactive'}`}></div>
                     </div>
                   )
