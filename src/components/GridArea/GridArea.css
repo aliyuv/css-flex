@@ -10,18 +10,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;
-  padding: 10px 16px;
+  padding:4px 0;
   color: white;
+  height: 60px;
 }
 
 .ga-items{
   display: flex;
-  min-height: 60px;
   justify-content: center;
   align-items: flex-start;
   gap: 8px;
-  padding: 0 20px;
+  padding: 0 18px;
 }
 
 .ga-box{
@@ -33,10 +32,9 @@
   align-items: center;
   flex-direction: column;
   gap: 4px;
-  padding: 10px 0;
+  padding: 6px 0;
   cursor: pointer;
   color: rgb(227, 230, 232);
-  user-select: none;          /* 标准属性 */
   -webkit-user-select: none;  /* Chrome/Safari */
   -moz-user-select: none;     /* Firefox */
   -ms-user-select: none;      /* IE/Edge */
@@ -81,7 +79,7 @@
 }
 
 .ga-contaniner{
-  width: 800px;
+  width: min(800px, 95%); /* 增加响应式适应 */
   margin: 20px auto;
   padding: 10px;
 
@@ -190,6 +188,7 @@
   gap: 5px;
   position: absolute;
   inset: 0;
+  contain: strict; /* 启用严格布局隔离 */
 }
 
 .ga-shandow-background{

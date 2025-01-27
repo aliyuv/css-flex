@@ -62,8 +62,8 @@ export default function GridArea() {
       },
     ], {
       // 添加最小动画时间
-      duration: Math.max(300, 500 * Math.abs(scaleX - 1)),
-      easing: 'ease-in-out',
+      duration: 300, // 固定时长更稳定
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)', // Material Design 标准曲线
       fill: 'both',
     })
     // 动画完成后清理样式
