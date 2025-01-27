@@ -12,6 +12,7 @@ function App() {
         <Link to="/flextypev">案列3</Link>
         <Link to="/flexgrow">案例4</Link>
         <Link to="/gridarea">案例5</Link>
+        <Link to="/contentjustify">案例6</Link>
       </nav>
     </>
   )

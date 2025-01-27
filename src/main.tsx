@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import App from './App.tsx'
+import ContentJustify from './components/ContentJustify/ContentJustify.tsx'
 import FlexDirection from './components/FlexDiretion/FlexDirection.tsx'
 import FlexGrow from './components/FlexGrow/FlexGrow.tsx'
 import FlexType from './components/FlexType/FlexType.tsx'
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
       <Route path="flexdirection" element={<FlexDirection />} />
       <Route path="flexgrow" element={<FlexGrow />} />
       <Route path="gridarea" element={<GridArea />} />
+      <Route path="contentjustify" element={<ContentJustify />} />
     </Routes>
   </BrowserRouter>,
 )

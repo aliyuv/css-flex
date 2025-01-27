@@ -1,0 +1,64 @@
+.ct-tab-contaniner{
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+button{
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ct-dec{
+  font-family: 'Wotfard', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(227, 230, 232);
+}
+
+.ct-tab-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ct-items{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.ct-bottomLine{
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffd500;
+  border-radius: 16px;
+  filter: saturate(0%);
+  opacity: .8;
+  transition: all 200ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.ct-bottomLine.active{
+  filter: saturate(100%);
+  opacity: 1;
+  height: 4px;
+}
+
+.ct-bottomLine.inactive{
+  filter: saturate(0%);
+  opacity: .8;
+  height: 2px;
+}
