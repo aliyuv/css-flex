@@ -9,11 +9,17 @@ interface PositionData {
 }
 
 export default function GridArea() {
-  const containerName = ['ga-sidebar', 'ga-header', 'ga-main']
-  const [containerNamec, setContainerNamec] = useState('ga-sidebar')
+  const areas = [
+    { id: 'ga-sidebar', name: 'sidebar' },
+    { id: 'ga-header', name: 'header' },
+    { id: 'ga-main', name: 'main' },
+  ]
+
+  const [active, setActive] = useState('ga-sidebar')
   const containerRef = useRef<HTMLDivElement>(null)
   const lastPosRef = useRef<PositionData | null>(null)
   const animationRef = useRef<Animation | null>(null) // 新增动画引用
+
   // 安全计算比例（防止除以零）
   const safeScale = (oldVal: number, newVal: number) => {
     return newVal === 0 ? 1 : oldVal / newVal
@@ -80,7 +86,7 @@ export default function GridArea() {
 
     startAnimation()
     return () => cancelAnimationFrame(rafId)
-  }, [containerNamec])
+  }, [active])
 
   const handleClick = (area: string) => {
     if (!containerRef.current)
@@ -95,7 +101,7 @@ export default function GridArea() {
       height: rect.height,
     }
 
-    setContainerNamec(area)
+    setActive(area)
   }
 
   return (
@@ -109,15 +115,15 @@ export default function GridArea() {
             </div>
             <div className="ga-items">
               {
-                containerName.map((item, i) => {
+                areas.map((item, i) => {
                   return (
                     <div
                       className="ga-box"
                       key={i}
-                      onClick={() => handleClick(item)}
+                      onClick={() => handleClick(item.id)}
                     >
-                      <div className="ga-box-dec">{item}</div>
-                      <div className={`ga-bottomLine ${containerNamec === item ? 'active' : 'inactive'}`}></div>
+                      <div className="ga-box-dec">{item.name}</div>
+                      <div className={`ga-bottomLine ${active === item.id ? 'active' : 'inactive'}`}></div>
                     </div>
                   )
                 })
@@ -139,7 +145,7 @@ export default function GridArea() {
               </div>
             </div>
             <div className="ga-shadow">
-              <div className="ga-shandow-background" ref={containerRef} style={{ gridArea: containerNamec }}>
+              <div className="ga-shandow-background" ref={containerRef} style={{ gridArea: active }}>
                 <div className="ga-inner-box"></div>
               </div>
             </div>
