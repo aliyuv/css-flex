@@ -17,7 +17,7 @@ export default function ContentJustify() {
     <>
       <LayoutContainer>
         <CommonTabs props={renderArr} dec="justify-content:" onChange={setActiveTab} activeTab={activeTab} />
-        <LayoutBox isOn={isOn} />
+        <LayoutBox isOn={isOn} activeTab={activeTab} />
         <Switch handleIsOnChange={handleIsOnChange} isOn={isOn} />
       </LayoutContainer>
     </>
