@@ -1,26 +1,26 @@
 import { motion } from 'motion/react'
-import { useState } from 'react'
 import './Switch.css'
 
-export default function Switch() {
-  const [isOn, setIsOn] = useState(false)
+interface State {
+  handleIsOnChange: () => void
+  isOn: boolean
+}
 
-  const toggleSwitch = () => setIsOn(!isOn)
-
+export default function Switch({ handleIsOnChange, isOn }: State) {
   return (
     <>
       <label className="toggle-switch">
         <button
           className="toggle-container"
           style={{
-            justifyContent: isOn ? 'flex-start' : 'flex-end',
+            justifyContent: isOn ? 'flex-end' : 'flex-start',
           }}
-          onClick={toggleSwitch}
+          onClick={handleIsOnChange}
         >
           <motion.div
             className="toggle-handle"
             layout
-            style={{ backgroundColor: isOn ? ' #5d666f' : '#e3e6e8' }}
+            style={{ backgroundColor: isOn ? '#e3e6e8' : '#5d666f' }}
             transition={{
               type: 'spring',
               stiffness: 400,
