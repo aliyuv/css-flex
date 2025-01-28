@@ -1,0 +1,31 @@
+.toggle-container {
+  width: 44px;
+  height: 1px;
+  border-radius:5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  padding: 2px;
+  background-color: #454d54;
+}
+
+.toggle-handle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #e3e6e8;
+  outline: 2px solid black;
+}
+
+.toggle-switch{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 20px 8px 16px;
+  width: fit-content;
+  border: 1px solid #272e35;
+  margin: 0 auto;
+  border-radius: 4px;
+  cursor: pointer;
+}

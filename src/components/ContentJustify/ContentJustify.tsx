@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import LayoutContainer from '../common/layoutContainer/LayoutContainer.tsx'
+import Switch from '../common/switch/Switch.tsx'
 import CommonTabs from '../common/tabs/CommonTabs.tsx'
 import './ContentJustify.css'
 
@@ -10,6 +11,7 @@ export default function ContentJustify() {
     <>
       <LayoutContainer>
         <CommonTabs props={renderArr} dec="justify-content:" onChange={setActiveTab} activeTab={activeTab} />
+        <Switch />
       </LayoutContainer>
     </>
   )
