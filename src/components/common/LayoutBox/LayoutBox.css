@@ -37,6 +37,7 @@
   transition: transform .5s ease-in-out;
   transform: translateZ(0);
   transform-style: preserve-3d;
+  isolation: isolate;
 }
 
 .lb-grid-item{

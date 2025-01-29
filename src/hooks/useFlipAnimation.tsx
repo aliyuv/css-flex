@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react'
 interface PositionData {
   x: number
   y: number
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
 export function useFlipAnimation(targetRef: RefObject<HTMLElement>, trigger: unknown) {
@@ -46,6 +46,10 @@ export function useFlipAnimation(targetRef: RefObject<HTMLElement>, trigger: unk
 
     const deltaX = first.x - last.x
     const deltaY = first.y - last.y
+
+    if (!first.width || !first.height)
+      return
+
     const scaleX = safeScale(first.width, last.width)
     const scaleY = safeScale(first.height, last.height)
 
