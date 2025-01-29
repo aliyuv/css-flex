@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import './LayoutBox.css'
 
 interface switchProps {
@@ -10,7 +11,7 @@ export default function LayoutBox({ isOn, activeTab }: switchProps) {
     <>
       <div className="lb-layout-box">
         <div className="lb-inner-box">
-          <div
+          <motion.div
             className="lb-item"
             style={{
               transform: isOn
@@ -18,14 +19,25 @@ export default function LayoutBox({ isOn, activeTab }: switchProps) {
                 : 'translateX(0%) skewY(0deg) scaleX(1)',
             }}
           >
-            <div
+            <motion.div
               className="lb-item-inner"
               style={{ justifyContent: activeTab }}
+              layout
             >
-              <div className="lb-items">C1</div>
-              <div className="lb-items">C2</div>
-            </div>
-          </div>
+              <motion.div
+                className="lb-items"
+                layout
+              >
+                C1
+              </motion.div>
+              <motion.div
+                className="lb-items"
+                layout
+              >
+                C2
+              </motion.div>
+            </motion.div>
+          </motion.div>
           <div
             className="lb-grid"
             style={{
@@ -34,17 +46,17 @@ export default function LayoutBox({ isOn, activeTab }: switchProps) {
                 : 'translateX(0%) skewY(0deg) scaleX(1)',
             }}
           >
-            <div
+            <motion.div
               className="lb-grid-content"
               style={{ justifyContent: activeTab }}
             >
-              <div className="lb-grid-item">
-                <div className="lb-grid-inner"></div>
-              </div>
-              <div className="lb-grid-item">
-                <div className="lb-grid-inner"></div>
-              </div>
-            </div>
+              <motion.div className="lb-grid-item" layout>
+                <motion.div className="lb-grid-inner"></motion.div>
+              </motion.div>
+              <motion.div className="lb-grid-item" layout>
+                <motion.div className="lb-grid-inner"></motion.div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
