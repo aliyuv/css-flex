@@ -60,7 +60,6 @@
 .lb-item-inner{
   display: grid;
   grid-template-columns: 90px 90px;
-  justify-content: start;
   gap: 2px;
   padding: 2px;
 }
@@ -88,10 +87,6 @@
   background: rgba(13, 15, 18, .6);
   font-size: 1rem;
   font-weight: 600;
-  /* 禁用默认变换继承 */
-  transform: translateZ(0);
-  /* 提升为独立复合层 */
-  backface-visibility: hidden;
 }
 
 .lb-items::after{
@@ -106,3 +101,5 @@
   border-radius: 5px 5px 0 0;
   border-bottom: unset;
 }
+
+

@@ -1,65 +1,92 @@
-import { motion } from 'motion/react'
+import { useEffect, useRef } from 'react'
 import './LayoutBox.css'
 
-interface switchProps {
+interface SwitchProps {
   isOn: boolean
   activeTab: string
 }
 
-export default function LayoutBox({ isOn, activeTab }: switchProps) {
+export default function LayoutBox({ isOn, activeTab }: SwitchProps) {
+  const itemInnerRef = useRef<HTMLDivElement>(null)
+  const gridContentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!itemInnerRef || !gridContentRef)
+      return
+    const containers = [itemInnerRef.current, gridContentRef.current].filter(Boolean)
+    containers.forEach((container) => {
+      if (!container)
+        return
+      const items = Array.from(container.children) as HTMLDivElement[]
+
+      const record = () => {
+        items.forEach((e) => {
+          const rect = e.getBoundingClientRect()
+          e.dataset.oldX = rect.left.toString()
+        })
+      }
+
+      const updateLayout = () => {
+        (container as HTMLElement).style.justifyContent = activeTab
+      }
+
+      const playAnimation = () => {
+        items.forEach((e) => {
+          const rect = e.getBoundingClientRect()
+          const dx = Number.parseFloat(e.dataset.oldX || '0') - rect.left
+
+          e.animate(
+            [
+              { transform: `translate(${dx}px,0` },
+              { transform: 'translate(0, 0)' },
+            ],
+            {
+              duration: 300,
+              easing: 'ease-out',
+            },
+          )
+        })
+      }
+      record()
+      updateLayout()
+      playAnimation()
+    })
+  }, [activeTab])
+
   return (
-    <>
-      <div className="lb-layout-box">
-        <div className="lb-inner-box">
-          <motion.div
-            className="lb-item"
-            style={{
-              transform: isOn
-                ? 'translateX(10%) skewY(18deg) scaleX(0.85)'
-                : 'translateX(0%) skewY(0deg) scaleX(1)',
-            }}
-          >
-            <motion.div
-              className="lb-item-inner"
-              style={{ justifyContent: activeTab }}
-              layout
-            >
-              <motion.div
-                className="lb-items"
-                layout
-              >
-                C1
-              </motion.div>
-              <motion.div
-                className="lb-items"
-                layout
-              >
-                C2
-              </motion.div>
-            </motion.div>
-          </motion.div>
+    <div className="lb-layout-box">
+      <div className="lb-inner-box">
+        <div
+          className="lb-item"
+          style={{
+            position: 'absolute',
+            transform: isOn
+              ? 'translateX(10%) skewY(18deg) scaleX(0.85)'
+              : 'translateX(0%) skewY(0deg) scaleX(1)',
+          }}
+        >
           <div
-            className="lb-grid"
-            style={{
-              transform: isOn
-                ? 'translateX(-10%) skewY(18deg) scaleX(0.85)'
-                : 'translateX(0%) skewY(0deg) scaleX(1)',
-            }}
+            className="lb-item-inner"
+            ref={itemInnerRef}
           >
-            <motion.div
-              className="lb-grid-content"
-              style={{ justifyContent: activeTab }}
-            >
-              <motion.div className="lb-grid-item" layout>
-                <motion.div className="lb-grid-inner"></motion.div>
-              </motion.div>
-              <motion.div className="lb-grid-item" layout>
-                <motion.div className="lb-grid-inner"></motion.div>
-              </motion.div>
-            </motion.div>
+            <div className="lb-items">C1</div>
+            <div className="lb-items">C2</div>
           </div>
         </div>
       </div>
-    </>
+      <div
+        className="lb-grid"
+        style={{ transform: isOn ? 'translateX(10%) skewY(18deg) scaleX(0.85)' : 'translateX(0%) skewY(0deg) scaleX(1)' }}
+      >
+        <div className="lb-grid-content" ref={gridContentRef}>
+          <div className="lb-grid-item">
+            <div className="lb-grid-inner"></div>
+          </div>
+          <div className="lb-grid-item">
+            <div className="lb-grid-inner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
