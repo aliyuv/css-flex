@@ -37,8 +37,8 @@ export default function LayoutBox({ isOn, activeTab }: SwitchProps) {
 
           e.animate(
             [
-              { transform: `translate(${dx}px,0` },
-              { transform: 'translate(0, 0)' },
+              { transform: `translateX(${dx}px` },
+              { transform: 'translateX(0)' },
             ],
             {
               duration: 300,
