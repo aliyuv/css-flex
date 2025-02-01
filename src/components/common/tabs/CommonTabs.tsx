@@ -1,3 +1,4 @@
+import React from 'react'
 import './CommonTabs.css'
 
 interface props {
@@ -5,12 +6,13 @@ interface props {
   dec?: string
   onChange?: (value: string) => void
   activeTab: string
+  style?: React.CSSProperties
 }
 
-export default function CommonTabs({ props, dec, onChange, activeTab }: props) {
+export default function CommonTabs({ props, dec, onChange, activeTab, style }: props) {
   return (
     <>
-      <div className="ct-tab-contaniner">
+      <div className="ct-tab-contaniner" style={style}>
         <div className="ct-tab-inner">
           <div className="ct-tab-button">
             <div className="ct-dec">{dec}</div>

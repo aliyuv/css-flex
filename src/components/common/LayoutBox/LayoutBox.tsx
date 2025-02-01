@@ -5,7 +5,7 @@ interface SwitchProps {
   isOn: boolean
   activeTab: string
   jiActiveTab: string
-  displayCount: booleabug
+  displayCount: boolean
 }
 
 export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }: SwitchProps) {
@@ -78,7 +78,12 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
       }
 
       const updateLayout = () => {
-        (container as HTMLElement).style.justifyItems = jiActiveTab
+        if (!displayCount) {
+          (container as HTMLElement).style.justifyItems = 'center'
+        }
+        else {
+          (container as HTMLElement).style.justifyItems = jiActiveTab
+        }
       }
 
       const playAnimation = () => {
@@ -99,6 +104,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
               {
                 duration: 300,
                 easing: 'ease-out',
+                fill: 'both', // 确保动画结束后保持最后的状态
               },
             )
           })
@@ -132,7 +138,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
       </div>
       <div
         className="lb-grid"
-        style={{ transform: isOn ? 'translateX(10%) skewY(18deg) scaleX(0.85)' : 'translateX(0%) skewY(0deg) scaleX(1)' }}
+        style={{ transform: isOn ? 'translateX(-10%) skewY(18deg) scaleX(0.85)' : 'translateX(0%) skewY(0deg) scaleX(1)' }}
       >
         <div className="lb-grid-content" ref={gridContentRef}>
           {
@@ -140,7 +146,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
               const maxItemToShow = displayCount ? 4 : 2
               if (index < maxItemToShow) {
                 return (
-                  <div className="lb-grid-item" key={index} ref={gridItemRef} style={{ width: displayCount ? 'auto' : '82' }}>
+                  <div className="lb-grid-item" key={index} ref={gridItemRef} style={{ width: displayCount ? 'auto' : '82px' }}>
                     <div className="lb-grid-inner">{displayCount ? `${item}` : ''}</div>
                   </div>
                 )

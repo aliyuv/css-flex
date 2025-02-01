@@ -11,6 +11,7 @@ export default function ContentJustify() {
   const [jiActiveTab, setJiActiveTab] = useState('stretch')
   const [activeTab, setActiveTab] = useState('start')
   const [isOn, setIsOn] = useState(false)
+  const displayCount = true
   const handleIsOnChange = () => {
     setIsOn(prevState => !prevState)
   }
@@ -19,7 +20,7 @@ export default function ContentJustify() {
     <>
       <LayoutContainer>
         <CommonTabs props={renderArr} dec="justify-content:" onChange={setActiveTab} activeTab={activeTab} />
-        <CommonTabs props={justifyItemsArr} dec="justify-items:" onChange={setJiActiveTab} activeTab={jiActiveTab} />
+        <CommonTabs props={justifyItemsArr} dec="justify-items:" onChange={setJiActiveTab} activeTab={jiActiveTab} style={{ display: displayCount ? 'block' : 'none' }} />
         <LayoutBox isOn={isOn} activeTab={activeTab} jiActiveTab={jiActiveTab} displayCount={true} />
         <Switch handleIsOnChange={handleIsOnChange} isOn={isOn} />
       </LayoutContainer>
