@@ -21,7 +21,7 @@ export default function ContentJustify() {
       <LayoutContainer>
         <CommonTabs props={renderArr} dec="justify-content:" onChange={setActiveTab} activeTab={activeTab} />
         <CommonTabs props={justifyItemsArr} dec="justify-items:" onChange={setJiActiveTab} activeTab={jiActiveTab} style={{ display: displayCount ? 'block' : 'none' }} />
-        <LayoutBox isOn={isOn} activeTab={activeTab} jiActiveTab={jiActiveTab} displayCount={true} />
+        <LayoutBox isOn={isOn} activeTab={activeTab} jiActiveTab={jiActiveTab} displayCount={displayCount} />
         <Switch handleIsOnChange={handleIsOnChange} isOn={isOn} />
       </LayoutContainer>
     </>

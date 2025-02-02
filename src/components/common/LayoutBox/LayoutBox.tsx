@@ -13,6 +13,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
   const gridContentRef = useRef<HTMLDivElement>(null)
   const gridItemRef = useRef<HTMLDivElement>(null)
   const contentText = ['One', 'Two', 'Three', 'Four']
+
   useEffect(() => {
     if (!itemInnerRef || !gridContentRef)
       return
@@ -58,7 +59,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
       updateLayout()
       playAnimation()
     })
-  }, [activeTab, displayCount])
+  }, [activeTab])
 
   useEffect(() => {
     if (!gridContentRef)
@@ -85,36 +86,43 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
           (container as HTMLElement).style.justifyItems = jiActiveTab
         }
       }
-
       const playAnimation = () => {
-        requestAnimationFrame(() => {
-          items.forEach((e) => {
-            const rect = e.getBoundingClientRect()
-            const dx = Number.parseFloat(e.dataset.oldX || '0') - rect.left
-            const dw = Number.parseFloat(e.dataset.oldW || '0') / rect.width
-            e.animate(
-              [
-                {
-                  transform: `translateX(${dx}px) scaleX(${dw})`,
-                },
-                {
-                  transform: 'translateX(0) scaleX(1)',
-                },
-              ],
+        items.forEach((e) => {
+          const rect = e.getBoundingClientRect()
+          const dx = Number.parseFloat(e.dataset.oldX || '0') - rect.left
+          const dw = Number.parseFloat(e.dataset.oldW || '0') / rect.width
+          console.log(dx, e.dataset.oldX, rect.left)
+          e.animate(
+            [
               {
-                duration: 300,
-                easing: 'ease-out',
-                fill: 'both', // 确保动画结束后保持最后的状态
+                transform: `translateX(${dx}px) scaleX(${dw})`,
               },
-            )
-          })
+              {
+                transform: 'translateX(0) scaleX(1)',
+              },
+            ],
+            {
+              duration: 300,
+              easing: 'ease-out',
+            },
+          )
+          const innerEl = e.querySelector('.lb-grid-inner')
+          if (innerEl) {
+            innerEl.animate([
+              { transform: `scaleX(${1 / dw})` },
+              { transform: `none` },
+            ], {
+              duration: 300,
+              easing: 'ease-out',
+            })
+          }
         })
       }
       record()
       updateLayout()
       playAnimation()
     })
-  }, [jiActiveTab, displayCount])
+  }, [jiActiveTab])
   return (
     <div className="lb-layout-box">
       <div className="lb-inner-box">
@@ -146,8 +154,12 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
               const maxItemToShow = displayCount ? 4 : 2
               if (index < maxItemToShow) {
                 return (
-                  <div className="lb-grid-item" key={index} ref={gridItemRef} style={{ width: displayCount ? 'auto' : '82px' }}>
-                    <div className="lb-grid-inner">{displayCount ? `${item}` : ''}</div>
+                  <div className="lb-grid-item" key={index} style={{ width: displayCount ? 'auto' : '82px' }} ref={gridItemRef}>
+                    <div
+                      style={{ flex: 1 }}
+                    >
+                      <div className="lb-grid-inner">{displayCount ? `${item}` : ''}</div>
+                    </div>
                   </div>
                 )
               }
