@@ -58,6 +58,9 @@
   background-color: silver;
   padding: 2px;
   border-radius: 4px;
+  /* 限制动画作用域 */
+  transform-origin: left center;
+  overflow: hidden;
 }
 
 .lb-grid-inner{
@@ -71,8 +74,14 @@
   justify-content: center;
   align-items: center;
   will-change: transform;
-  transform: translateZ(0);
   transform-origin: left center;
+  backface-visibility: hidden; /* 消除字体渲染抖动 */
+}
+
+.lb-grid-inner>div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lb-item-inner{
