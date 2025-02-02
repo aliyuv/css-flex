@@ -91,7 +91,6 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
           const rect = e.getBoundingClientRect()
           const dx = Number.parseFloat(e.dataset.oldX || '0') - rect.left
           const dw = Number.parseFloat(e.dataset.oldW || '0') / rect.width
-          console.log(dx, e.dataset.oldX, rect.left)
           e.animate(
             [
               {
@@ -105,16 +104,16 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
               duration: 300,
               easing: 'ease-out',
             },
-          )
-          const innerEl = e.querySelector('.lb-grid-inner')
-          if (innerEl) {
-            innerEl.animate([
-              { transform: `scaleX(${1 / dw})` },
-              { transform: `none` },
-            ], {
-              duration: 300,
-              easing: 'ease-out',
-            })
+          ).onupdate = () => {
+            // 父元素宽度 = 原始宽度 * currentScale
+            // 子元素缩放 = 1 / currentScale
+            // 最终渲染宽度 = 父元素宽度 * 子元素缩放 = (原始宽度 * currentScale) * (1/currentScale) = 原始宽度
+            const progress = animation.currentTime / animation.effect.getComputedTiming().duration
+            const currentScale = dw + (1 - dw) * progress
+            const innerEl = e.querySelector('.lb-grid-inner')
+            if (innerEl) {
+              innerEl.style.transform = `scaleX(${1 / currentScale})`
+            }
           }
         })
       }
@@ -155,10 +154,8 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
               if (index < maxItemToShow) {
                 return (
                   <div className="lb-grid-item" key={index} style={{ width: displayCount ? 'auto' : '82px' }} ref={gridItemRef}>
-                    <div
-                      style={{ flex: 1 }}
-                    >
-                      <div className="lb-grid-inner">{displayCount ? `${item}` : ''}</div>
+                    <div className="lb-grid-item-box">
+                      <div className="lb-grid-inner"><span>{displayCount ? `${item}` : ''}</span></div>
                     </div>
                   </div>
                 )

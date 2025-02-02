@@ -43,18 +43,21 @@
 
 .lb-grid-item{
   width: 82px;
-  border-radius: 4px;
-  background-color: silver;
-  background-attachment: fixed;
-  padding: 2px;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   font-size: 1rem;
   margin: 2px;
   display: flex;
   will-change: transform;
   transform: translateZ(0);
   transform-origin: left center;
+}
+
+.lb-grid-item-box{
+  flex: 1;
+  background-color: silver;
+  padding: 2px;
+  border-radius: 4px;
 }
 
 .lb-grid-inner{
