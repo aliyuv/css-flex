@@ -13,7 +13,6 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
   const gridContentRef = useRef<HTMLDivElement>(null)
   const gridItemRef = useRef<HTMLDivElement>(null)
   const contentText = ['One', 'Two', 'Three', 'Four']
-
   useEffect(() => {
     if (!itemInnerRef || !gridContentRef)
       return
@@ -98,7 +97,6 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
             {
               duration: 300,
               easing: 'ease-out',
-              fill: 'forwards',
             },
           )
         })
@@ -147,7 +145,9 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
                     ref={gridItemRef}
                   >
                     <div className="lb-grid-item-box">
-                      <div className="lb-grid-inner">
+                      <div
+                        className="lb-grid-inner"
+                      >
                         <div>{displayCount ? `${item}` : ''}</div>
                       </div>
                     </div>
@@ -161,8 +161,16 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
                     key={index}
                     ref={gridItemRef}
                   >
-                    <div className="lb-grid-item-box">
-                      <div className="lb-grid-inner">
+                    <div
+                      className="lb-grid-item-box"
+                    >
+                      <div
+                        className="lb-grid-inner"
+                        style={{
+                          transform: isOn ? 'scaleX(1.176) skewY(-18deg)' : 'none',
+                          transformOrigin: '0 0',
+                        }}
+                      >
                         <div>{displayCount ? `${item}` : ''}</div>
                       </div>
                     </div>

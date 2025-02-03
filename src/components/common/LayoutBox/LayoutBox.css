@@ -63,7 +63,7 @@ body {
   border-radius: 4px;
   /* 限制动画作用域 */
   transform-origin: left center;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex: 1 1;
 }
