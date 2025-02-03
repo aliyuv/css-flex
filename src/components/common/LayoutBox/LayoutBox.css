@@ -47,8 +47,7 @@ body {
 }
 
 .lb-grid-item{
-  width: 82px;
-  display: grid;
+  display: flex;
   position:relative;
   overflow: hidden;
   font-size: 1rem;
@@ -59,7 +58,6 @@ body {
 }
 
 .lb-grid-item-box{
-  flex: 1 1;
   background-color: silver;
   padding: 2px;
   border-radius: 4px;
@@ -67,9 +65,7 @@ body {
   transform-origin: left center;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex: 1 1;
 }
 
 .lb-grid-inner{
@@ -80,7 +76,6 @@ body {
   background-color: #1a1f23;
   padding: 10px 16px;
   display: flex;
-  flex: 1;
   justify-content: center;
   align-items: center;
   will-change: transform;
@@ -89,28 +84,22 @@ body {
   isolation: isolate;
 
 }
+
 .lb-grid-inner>div{
   isolation: isolate;
   font-family: "Cartograph CF", monospace, serif;
   font-size:12px;
-  /* 强制启用亚像素渲染 */
-  -webkit-font-smoothing: subpixel-antialiased !important;
-  text-rendering: geometricPrecision;
-
-  /* 创建独立渲染层 */
-  transform: translateZ(0.0001px) scale(0.9999); /* 微小偏移破解浏览器优化 */
-  backface-visibility: hidden;
-
-  /* 防止字体变形 */
-  font-optical-sizing: none;
-  font-variation-settings: 'opsz' 0;
 }
+
+.lb-grid-inner>div>span{
+  display: inline-block;
+}
+
 .lb-item-inner{
   display: grid;
   grid-template-columns: 90px 90px;
   gap: 2px;
   padding: 2px;
-
 }
 
 .lb-grid-content{

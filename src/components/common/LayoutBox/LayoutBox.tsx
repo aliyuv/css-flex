@@ -91,7 +91,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
           const rect = e.getBoundingClientRect()
           const dx = Number.parseFloat(e.dataset.oldX || '0') - rect.left
           const dw = Number.parseFloat(e.dataset.oldW || '0') / rect.width
-          const animation = e.animate(
+          e.animate(
             [
               {
                 transform: `translateX(${dx}px) scaleX(${dw})`,
@@ -106,24 +106,6 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
               fill: 'forwards',
             },
           )
-          // animationP.play()
-          // animationP.onfinish = () => {
-          //   // 父元素宽度 = 原始宽度 * currentScale
-          //   // 子元素缩放 = 1 / currentScale
-          //   // 最终渲染宽度 = 父元素宽度 * 子元素缩放 = (原始宽度 * currentScale) * (1/currentScale) = 原始宽度
-          //
-          // }
-          // requestAnimationFrame(() => {
-          //   const progress = animationP.currentTime / animationP.effect.getComputedTiming().duration
-          //   const currentScale = dw + (1 - dw) * progress
-          //   console.log(1)
-          //   console.log('当前缩放比例:', currentScale)
-          //   const innerEl = e.querySelector('.lb-grid-item-box') as HTMLElement
-          //   console.log('innerEl 存在?', !!innerEl) // 检查元素是否存在
-          //   if (innerEl) {
-          //     innerEl.style.transform = `scaleX(${1 / currentScale})`
-          //   }
-          // })
         })
       }
       record()
@@ -168,7 +150,6 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
                   <div
                     className="lb-grid-item"
                     key={index}
-                    style={{ width: displayCount ? 'auto' : '82px' }}
                     ref={gridItemRef}
                   >
                     <div className="lb-grid-item-box">
