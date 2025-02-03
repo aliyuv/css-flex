@@ -1,4 +1,8 @@
-
+/* 全局字体优化 */
+body {
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeLegibility;
+}
 .lb-layout-box{
   position: relative;
   width:280px;
@@ -39,28 +43,33 @@
   transform: translateZ(0);
   transform-style: preserve-3d;
   isolation: isolate;
+  overflow: visible !important; /* 防止裁剪 */
 }
 
 .lb-grid-item{
   width: 82px;
-  position: relative;
+  display: grid;
+  position:relative;
   overflow: hidden;
   font-size: 1rem;
   margin: 2px;
-  display: flex;
   will-change: transform;
-  transform: translateZ(0);
   transform-origin: left center;
+  transform-style: preserve-3d;
 }
 
 .lb-grid-item-box{
-  flex: 1;
+  flex: 1 1;
   background-color: silver;
   padding: 2px;
   border-radius: 4px;
   /* 限制动画作用域 */
   transform-origin: left center;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .lb-grid-inner{
@@ -71,24 +80,37 @@
   background-color: #1a1f23;
   padding: 10px 16px;
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
   will-change: transform;
   transform-origin: left center;
   backface-visibility: hidden; /* 消除字体渲染抖动 */
-}
+  isolation: isolate;
 
+}
 .lb-grid-inner>div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  isolation: isolate;
+  font-family: "Cartograph CF", monospace, serif;
+  font-size:12px;
+  /* 强制启用亚像素渲染 */
+  -webkit-font-smoothing: subpixel-antialiased !important;
+  text-rendering: geometricPrecision;
 
+  /* 创建独立渲染层 */
+  transform: translateZ(0.0001px) scale(0.9999); /* 微小偏移破解浏览器优化 */
+  backface-visibility: hidden;
+
+  /* 防止字体变形 */
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' 0;
+}
 .lb-item-inner{
   display: grid;
   grid-template-columns: 90px 90px;
   gap: 2px;
   padding: 2px;
+
 }
 
 .lb-grid-content{
@@ -124,6 +146,7 @@
   width: 100%;
   border-bottom: 2px dashed #75808a;
 }
+
 .lb-items::after{
   content: '';
   position: absolute;
