@@ -79,12 +79,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
       }
 
       const updateLayout = () => {
-        if (!displayCount) {
-          (container as HTMLElement).style.justifyItems = 'center'
-        }
-        else {
-          (container as HTMLElement).style.justifyItems = jiActiveTab
-        }
+        (container as HTMLElement).style.justifyItems = jiActiveTab
       }
       const playAnimation = () => {
         items.forEach((e) => {
@@ -112,7 +107,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
       updateLayout()
       playAnimation()
     })
-  }, [jiActiveTab])
+  }, [jiActiveTab, displayCount])
   return (
     <div className="lb-layout-box">
       <div className="lb-inner-box">
@@ -138,15 +133,14 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
         className="lb-grid"
         style={{
           transform: isOn
-            ? 'translateX(-10%) skewY(18deg) scaleX(0.85) perspective(1000px)'
+            ? 'translateX(-10%) skewY(18deg) scaleX(0.85)'
             : 'none',
         }}
       >
         <div className="lb-grid-content" ref={gridContentRef}>
-          {
-            contentText.map((item, index) => {
-              if (displayCount) {
-                return (
+          {displayCount
+            ? (
+                contentText.map((item, index) => (
                   <div
                     className="lb-grid-item"
                     key={index}
@@ -158,11 +152,23 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
                       </div>
                     </div>
                   </div>
-                )
-              }
-              return null
-            })
-          }
+                ))
+              )
+            : (
+                contentText.slice(0, 2).map((item, index) => (
+                  <div
+                    className="lb-grid-item"
+                    key={index}
+                    ref={gridItemRef}
+                  >
+                    <div className="lb-grid-item-box">
+                      <div className="lb-grid-inner">
+                        <div>{displayCount ? `${item}` : ''}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
         </div>
       </div>
     </div>
