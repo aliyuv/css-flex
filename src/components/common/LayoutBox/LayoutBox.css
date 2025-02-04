@@ -42,7 +42,6 @@ body {
   padding: 2px;
   display: flex;
   position:relative;
-  font-size: 1rem;
   margin: 2px;
   transform-origin: 0 0;
   will-change: transform; /* 提示浏览器优化动画 */
@@ -54,13 +53,14 @@ body {
   border-radius: 4px;
   transform-origin: 0 0;
   display: flex;
-  flex: 1 1;
+  flex: 1 1 auto;
   position: relative;
 }
 
 .lb-text{
   overflow: hidden;
   backface-visibility: hidden;
+  font-size: 14px;
 }
 
 .lb-grid-inner{
@@ -80,12 +80,8 @@ body {
 .lb-grid-inner>div{
   isolation: isolate;
   font-family: "Cartograph CF", monospace, serif;
-  font-size:12px;
 }
 
-.lb-grid-inner>div>span{
-  display: inline-block;
-}
 
 .lb-item-inner{
   display: grid;
@@ -141,5 +137,3 @@ body {
   border-radius: 5px 5px 0 0;
   border-bottom: unset;
 }
-
-

@@ -41,17 +41,10 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
 
           e.animate(
             [
-              {
-                transform: `translateX(${dx}px`,
-              },
-              {
-                transform: 'translateX(0)',
-              },
+              { transform: `translateX(${dx}px` },
+              { transform: 'translateX(0)' },
             ],
-            {
-              duration: 300,
-              easing: 'ease-out',
-            },
+            { duration: 300, easing: 'ease-out' },
           )
         })
       }
@@ -61,67 +54,6 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
     })
   }, [activeTab])
 
-  // useEffect(() => {
-  //   if (!gridContentRef)
-  //     return
-  //   const containers = [gridContentRef.current].filter(Boolean)
-  //   containers.forEach((container) => {
-  //     if (!container)
-  //       return
-  //     const items = Array.from(container.children) as HTMLDivElement[]
-  //
-  //     const record = () => {
-  //       items.forEach((e) => {
-  //         const rect = e.getBoundingClientRect()
-  //         e.dataset.oldX = rect.left.toString()
-  //         e.dataset.oldW = rect.width.toString()
-  //       })
-  //     }
-  //
-  //     const updateLayout = () => {
-  //       (container as HTMLElement).style.justifyItems = jiActiveTab
-  //     }
-  //     const playAnimation = () => {
-  //       items.forEach((e) => {
-  //         const rect = e.getBoundingClientRect()
-  //         const dx = Number.parseFloat(e.dataset.oldX || '0') - rect.left
-  //         const dw = Number.parseFloat(e.dataset.oldW || '0') / rect.width
-  //         const childrenRect = childrenRef.current!.getBoundingClientRect()
-  //         const transform = {
-  //           x: e.dataset.oldX - rect.left - (e.dataset.oldW - rect.width) / 2,
-  //           scaleX: e.dataset.oldW / rect.width,
-  //         }
-  //         gridContentRef.current!.style.transform = `translateX(${transform.x}px) scaleX(${transform.scaleX})`
-  //         animate({
-  //           from: transform,
-  //           to: { x: 0, scaleX: 1 },
-  //           duration: 1000,
-  //           onUpdate: (e) => {
-  //             gridContentRef.current!.style.transform = `translateX(${e.x}px) scaleX(${e.scaleX})`
-  //             childrenRef.current!.style.transform = `scaleX(1/${e.scaleX})`
-  //           },
-  //         })
-  //         // e.animate(
-  //         //   [
-  //         //     {
-  //         //       transform: `translateX(${dx}px) scaleX(${dw})`,
-  //         //     },
-  //         //     {
-  //         //       transform: 'translateX(0) scaleX(1)',
-  //         //     },
-  //         //   ],
-  //         //   {
-  //         //     duration: 300,
-  //         //     easing: 'ease-out',
-  //         //   },
-  //         // )
-  //       })
-  //     }
-  //     record()
-  //     updateLayout()
-  //     playAnimation()
-  //   })
-  // }, [jiActiveTab, displayCount])
   useEffect(() => {
     if (!gridContentRef.current)
       return
@@ -150,21 +82,18 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
         // 计算正确的位移和缩放
         const translateX = oldX - newX
         const scaleX = oldW / newW
-
         animate({
           from: { translateX, scaleX },
           to: { translateX: 0, scaleX: 1 },
-          duration: 500,
+          duration: 300,
           onUpdate: (value) => {
             e.style.transform = `translateX(${value.translateX}px) scaleX(${value.scaleX})`
             // 对子元素应用反向缩放
-            const childElements = e.querySelectorAll('.lb-text')
+            const childElements = e.querySelectorAll('.lb-text') as NodeListOf<HTMLElement>
             childElements.forEach((child) => {
               child.style.transform = `scaleX(${1 / value.scaleX})`
-              child.style.transformOrigin = '0 0' // 确保缩放的中心点一致
+              child.style.transformOrigin = 'center' // 确保缩放的中心点一致
             })
-          },
-          onComplete: () => {
           },
         })
       })
@@ -173,7 +102,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
     record()
     updateLayout()
     playAnimation()
-  }, [jiActiveTab, displayCount])
+  }, [jiActiveTab])
   return (
     <div className="lb-layout-box">
       <div className="lb-inner-box">
@@ -197,11 +126,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
       </div>
       <div
         className="lb-grid"
-        style={{
-          transform: isOn
-            ? 'translateX(-10%) skewY(18deg) scaleX(0.85)'
-            : 'none',
-        }}
+        style={{ transform: isOn ? 'translateX(-10%) skewY(18deg) scaleX(0.85)' : 'none' }}
       >
         <div className="lb-grid-content" ref={gridContentRef}>
           {displayCount
@@ -211,6 +136,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
                     className="lb-grid-item"
                     key={index}
                     ref={childrenRef}
+
                   >
                     <div className="lb-grid-item-box">
                       <div
@@ -223,22 +149,15 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
                 ))
               )
             : (
-                contentText.slice(0, 2).map((item, index) => (
+                contentText.slice(0, 2).map((_, index) => (
                   <div
                     className="lb-grid-item"
                     key={index}
+                    style={{ transform: isOn ? 'translateX(-10%) skewY(18deg) scaleX(0.85)' : 'none' }}
                   >
-                    <div
-                      className="lb-grid-item-box"
-                    >
-                      <div
-                        className="lb-grid-inner"
-                        style={{
-                          transform: isOn ? 'scaleX(1.176) skewY(-18deg)' : 'none',
-                          transformOrigin: '0 0',
-                        }}
-                      >
-                        <div>{displayCount ? `${item}` : ''}</div>
+                    <div className="lb-grid-item-box">
+                      <div className="lb-grid-inner">
+                        <div></div>
                       </div>
                     </div>
                   </div>
