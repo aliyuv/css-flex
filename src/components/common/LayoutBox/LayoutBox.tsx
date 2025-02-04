@@ -1,5 +1,6 @@
-import { animate } from 'popmotion'
-import { useEffect, useRef } from 'react'
+import { animate, easeOut } from 'popmotion'
+import { useRef } from 'react'
+import useLayoutAnimation from '../../../hooks/useLayoutAnimation.tsx'
 import './LayoutBox.css'
 
 interface SwitchProps {
@@ -12,114 +13,107 @@ interface SwitchProps {
 const ANIMATION_DURATION = 300
 const CONTAINER_TRANSFORM_LEFT = 'translateX(-10%) skewY(18deg) scaleX(0.85)'
 const CONTAINER_TRANSFORM_RIGHT = 'translateX(10%) skewY(18deg) scaleX(0.85)'
+
 export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }: SwitchProps) {
   const itemInnerRef = useRef<HTMLDivElement>(null)
   const gridContentRef = useRef<HTMLDivElement>(null)
   const contentText = ['One', 'Two', 'Three', 'Four']
-  useEffect(() => {
-    if (!itemInnerRef || !gridContentRef)
-      return
-    const containers = [itemInnerRef.current, gridContentRef.current].filter(Boolean)
-    containers.forEach((container) => {
-      if (!container)
-        return
-      const items = Array.from(container.children) as HTMLDivElement[]
+  // 第一个容器的动画逻辑
+  useLayoutAnimation(
+    itemInnerRef,
+    [activeTab],
+    (container) => {
+      container.style.justifyContent = activeTab
+    },
+    (element) => {
+      const currentX = element.offsetLeft
+      const initialX = Number(element.dataset.oldX)
+      const offsetX = initialX - currentX
 
-      const record = () => {
-        items.forEach((e) => {
-          const rect = e.getBoundingClientRect()
-          e.dataset.oldX = rect.left.toString()
-        })
-      }
-
-      const updateLayout = () => {
-        (container as HTMLElement).style.justifyContent = activeTab
-      }
-
-      const playAnimation = () => {
-        items.forEach((e) => {
-          const rect = e.getBoundingClientRect()
-          const dx = Number.parseFloat(e.dataset.oldX || '0') - rect.left
-
-          e.animate(
-            [
-              { transform: `translateX(${dx}px` },
-              { transform: 'translateX(0)' },
-            ],
-            { duration: ANIMATION_DURATION, easing: 'ease-out' },
-          )
-        })
-      }
-      record()
-      updateLayout()
-      playAnimation()
-    })
-  }, [activeTab])
-
-  useEffect(() => {
-    if (!gridContentRef.current)
-      return
-
-    const container = gridContentRef.current
-    const items = Array.from(container.children) as HTMLElement[]
-
-    const record = () => {
-      items.forEach((e) => {
-        // 记录相对父容器的位置和尺寸
-        e.dataset.oldX = e.offsetLeft.toString()
-        e.dataset.oldW = e.offsetWidth.toString()
+      const animation = animate({
+        from: offsetX,
+        to: 0,
+        duration: ANIMATION_DURATION,
+        ease: easeOut,
+        onUpdate: (x) => {
+          element.style.transform = `translateX(${x}px)`
+        },
+        onComplete: () => {
+          element.style.transform = ``
+        },
       })
-    }
 
-    const updateLayout = () => {
+      return {
+        stop: () => animation.stop(),
+      }
+    },
+  )
+
+  // 第二个容器的动画逻辑
+  useLayoutAnimation(
+    gridContentRef,
+    [jiActiveTab, displayCount],
+    (container) => {
       container.style.justifyItems = jiActiveTab
-    }
+    },
+    (element) => {
+      const newX = element.offsetLeft
+      const newW = element.offsetWidth
+      const oldX = Number(element.dataset.oldX)
+      const oldW = Number(element.dataset.oldW)
 
-    const playAnimation = () => {
-      items.forEach((e) => {
-        const newX = e.offsetLeft
-        const newW = e.offsetWidth
-        const oldX = Number(e.dataset.oldX)
-        const oldW = Number(e.dataset.oldW)
-        // 计算正确的位移和缩放
-        const translateX = oldX - newX
-        const scaleX = oldW / newW
-        animate({
-          from: { translateX, scaleX },
-          to: { translateX: 0, scaleX: 1 },
-          duration: ANIMATION_DURATION,
-          onUpdate: (value) => {
-            e.style.transform = `translateX(${value.translateX}px) scaleX(${value.scaleX})`
-            // 对子元素应用反向缩放
-            const childElements = e.querySelectorAll('.lb-text') as NodeListOf<HTMLElement>
-            childElements.forEach((child) => {
-              child.style.transform = `scaleX(${1 / value.scaleX})`
-              child.style.transformOrigin = 'center' // 确保缩放的中心点一致 / 此处浪费了 48个小时
-            })
-          },
-        })
+      const translateX = oldX - newX
+      const scaleX = oldW / newW
+
+      const animation = animate({
+        from: { translateX, scaleX },
+        to: { translateX: 0, scaleX: 1 },
+        duration: ANIMATION_DURATION,
+        ease: easeOut,
+        onUpdate: (value) => {
+          element.style.transform = `translateX(${value.translateX}px) scaleX(${value.scaleX})`
+          const childElements = element.querySelectorAll<HTMLElement>('.lb-text')
+          childElements.forEach((child) => {
+            child.style.transform = `scaleX(${1 / value.scaleX})`
+            child.style.transformOrigin = 'center'
+          })
+        },
+        onComplete: () => {
+          element.style.transform = ''
+          const childElements = element.querySelectorAll<HTMLElement>('.lb-text')
+          childElements.forEach(child => (child.style.transform = ''))
+        },
       })
-    }
 
-    record()
-    updateLayout()
-    playAnimation()
-  }, [jiActiveTab])
+      return {
+        stop: () => animation.stop(),
+      }
+    },
+  )
+
   return (
     <div className="lb-layout-box">
       <div className="lb-inner-box">
-        <div className="lb-item" style={{ transform: isOn ? CONTAINER_TRANSFORM_RIGHT : undefined }}>
+        <div
+          className="lb-item"
+          style={{ transform: isOn ? CONTAINER_TRANSFORM_RIGHT : undefined }}
+        >
           <div className="lb-item-inner" ref={itemInnerRef}>
             <div className="lb-items">C1</div>
             <div className="lb-items">C2</div>
-            <div className="lb-row-line" style={{ display: displayCount ? 'block' : 'none' }}></div>
+            <div className={`lb-row-line ${displayCount ? 'visible' : 'hidden'}`} />
           </div>
         </div>
       </div>
-      <div className="lb-grid" style={{ transform: isOn ? CONTAINER_TRANSFORM_LEFT : undefined }}>
+
+      <div
+        className="lb-grid"
+        style={{ transform: isOn ? CONTAINER_TRANSFORM_LEFT : undefined }}
+      >
         <div className="lb-grid-content" ref={gridContentRef}>
-          {
-            contentText.slice(0, displayCount ? contentText.length : 2).map(item => (
+          {contentText
+            .slice(0, displayCount ? contentText.length : 2)
+            .map(item => (
               <div className="lb-grid-item" key={item}>
                 <div className="lb-grid-item-box">
                   <div className="lb-grid-inner">
@@ -127,8 +121,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
                   </div>
                 </div>
               </div>
-            ))
-          }
+            ))}
         </div>
       </div>
     </div>

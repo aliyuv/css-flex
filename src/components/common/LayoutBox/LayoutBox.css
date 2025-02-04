@@ -42,8 +42,8 @@ body {
   display: flex;
   position:relative;
   margin: 2px;
-  transform-origin: 0 0;
   will-change: transform; /* 提示浏览器优化动画 */
+  transform-origin: left center; /* 确保缩放基于左侧 */
 }
 
 .lb-grid-item-box{
@@ -58,6 +58,7 @@ body {
   overflow: hidden;
   backface-visibility: hidden;
   font-size: 14px;
+  will-change: transform;
 }
 
 .lb-grid-inner{
