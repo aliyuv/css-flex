@@ -92,7 +92,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
             const childElements = e.querySelectorAll('.lb-text') as NodeListOf<HTMLElement>
             childElements.forEach((child) => {
               child.style.transform = `scaleX(${1 / value.scaleX})`
-              child.style.transformOrigin = 'center' // 确保缩放的中心点一致
+              child.style.transformOrigin = 'center' // 确保缩放的中心点一致 / 此处浪费了 48个小时
             })
           },
         })
