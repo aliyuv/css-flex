@@ -9,10 +9,12 @@ interface SwitchProps {
   displayCount: boolean
 }
 
+const ANIMATION_DURATION = 300
+const CONTAINER_TRANSFORM_LEFT = 'translateX(-10%) skewY(18deg) scaleX(0.85)'
+const CONTAINER_TRANSFORM_RIGHT = 'translateX(10%) skewY(18deg) scaleX(0.85)'
 export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }: SwitchProps) {
   const itemInnerRef = useRef<HTMLDivElement>(null)
   const gridContentRef = useRef<HTMLDivElement>(null)
-  const childrenRef = useRef<HTMLDivElement>(null)
   const contentText = ['One', 'Two', 'Three', 'Four']
   useEffect(() => {
     if (!itemInnerRef || !gridContentRef)
@@ -44,7 +46,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
               { transform: `translateX(${dx}px` },
               { transform: 'translateX(0)' },
             ],
-            { duration: 300, easing: 'ease-out' },
+            { duration: ANIMATION_DURATION, easing: 'ease-out' },
           )
         })
       }
@@ -85,7 +87,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
         animate({
           from: { translateX, scaleX },
           to: { translateX: 0, scaleX: 1 },
-          duration: 300,
+          duration: ANIMATION_DURATION,
           onUpdate: (value) => {
             e.style.transform = `translateX(${value.translateX}px) scaleX(${value.scaleX})`
             // 对子元素应用反向缩放
@@ -106,63 +108,27 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
   return (
     <div className="lb-layout-box">
       <div className="lb-inner-box">
-        <div
-          className="lb-item"
-          style={{
-            transform: isOn
-              ? 'translateX(10%) skewY(18deg) scaleX(0.85)'
-              : 'none',
-          }}
-        >
-          <div
-            className="lb-item-inner"
-            ref={itemInnerRef}
-          >
+        <div className="lb-item" style={{ transform: isOn ? CONTAINER_TRANSFORM_RIGHT : undefined }}>
+          <div className="lb-item-inner" ref={itemInnerRef}>
             <div className="lb-items">C1</div>
             <div className="lb-items">C2</div>
             <div className="lb-row-line" style={{ display: displayCount ? 'block' : 'none' }}></div>
           </div>
         </div>
       </div>
-      <div
-        className="lb-grid"
-        style={{ transform: isOn ? 'translateX(-10%) skewY(18deg) scaleX(0.85)' : 'none' }}
-      >
+      <div className="lb-grid" style={{ transform: isOn ? CONTAINER_TRANSFORM_LEFT : undefined }}>
         <div className="lb-grid-content" ref={gridContentRef}>
-          {displayCount
-            ? (
-                contentText.map((item, index) => (
-                  <div
-                    className="lb-grid-item"
-                    key={index}
-                    ref={childrenRef}
-
-                  >
-                    <div className="lb-grid-item-box">
-                      <div
-                        className="lb-grid-inner"
-                      >
-                        <div className="lb-text">{displayCount ? `${item}` : ''}</div>
-                      </div>
-                    </div>
+          {
+            contentText.slice(0, displayCount ? contentText.length : 2).map(item => (
+              <div className="lb-grid-item" key={item}>
+                <div className="lb-grid-item-box">
+                  <div className="lb-grid-inner">
+                    {displayCount && <div className="lb-text">{item}</div>}
                   </div>
-                ))
-              )
-            : (
-                contentText.slice(0, 2).map((_, index) => (
-                  <div
-                    className="lb-grid-item"
-                    key={index}
-                    style={{ transform: isOn ? 'translateX(-10%) skewY(18deg) scaleX(0.85)' : 'none' }}
-                  >
-                    <div className="lb-grid-item-box">
-                      <div className="lb-grid-inner">
-                        <div></div>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              )}
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
