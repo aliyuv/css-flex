@@ -123,6 +123,14 @@ body {
   border-bottom: 2px dashed #75808a;
 }
 
+.lb-row-line.visible{
+  display: block;
+}
+
+.lb-row-line.hidden{
+  display: none;
+}
+
 .lb-items::after{
   content: '';
   position: absolute;

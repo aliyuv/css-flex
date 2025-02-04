@@ -20,7 +20,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
   const contentText = ['One', 'Two', 'Three', 'Four']
   // 第一个容器的动画逻辑
   useLayoutAnimation(
-    itemInnerRef,
+    [itemInnerRef, gridContentRef],
     [activeTab],
     (container) => {
       container.style.justifyContent = activeTab
@@ -51,7 +51,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
 
   // 第二个容器的动画逻辑
   useLayoutAnimation(
-    gridContentRef,
+    [gridContentRef],
     [jiActiveTab, displayCount],
     (container) => {
       container.style.justifyItems = jiActiveTab
