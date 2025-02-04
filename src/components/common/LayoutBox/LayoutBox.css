@@ -39,13 +39,13 @@ body {
 }
 
 .lb-grid-item{
-  width: auto;
   padding: 2px;
   display: flex;
   position:relative;
   font-size: 1rem;
   margin: 2px;
   transform-origin: 0 0;
+  will-change: transform; /* 提示浏览器优化动画 */
 }
 
 .lb-grid-item-box{
@@ -58,8 +58,13 @@ body {
   position: relative;
 }
 
+.lb-text{
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
 .lb-grid-inner{
-  border: 2px solid red;
+  border: 2px solid #75808a;
   width: 100%;
   height: 100%;
   background-color: #1a1f23;

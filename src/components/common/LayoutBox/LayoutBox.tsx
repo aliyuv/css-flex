@@ -158,7 +158,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
           onUpdate: (value) => {
             e.style.transform = `translateX(${value.translateX}px) scaleX(${value.scaleX})`
             // 对子元素应用反向缩放
-            const childElements = e.querySelectorAll('.lb-grid-inner')
+            const childElements = e.querySelectorAll('.lb-text')
             childElements.forEach((child) => {
               child.style.transform = `scaleX(${1 / value.scaleX})`
               child.style.transformOrigin = '0 0' // 确保缩放的中心点一致
@@ -216,7 +216,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
                       <div
                         className="lb-grid-inner"
                       >
-                        <div>{displayCount ? `${item}` : ''}</div>
+                        <div className="lb-text">{displayCount ? `${item}` : ''}</div>
                       </div>
                     </div>
                   </div>
