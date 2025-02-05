@@ -46,7 +46,7 @@ body {
   transform-origin: left center; /* 确保缩放基于左侧 */
 }
 
-.lb-grid-inner:first-child.active{
+.lb-grid-inner.active{
   background-color: rgb(255, 213, 0);
   color: black;
   border: 2px solid rgb(255, 247, 204);
