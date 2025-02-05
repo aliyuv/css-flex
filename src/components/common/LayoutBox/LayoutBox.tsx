@@ -18,7 +18,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
   const itemInnerRef = useRef<HTMLDivElement>(null)
   const gridContentRef = useRef<HTMLDivElement>(null)
   const contentText = ['One', 'Two', 'Three', 'Four']
-  // 第一个容器的动画逻辑
+
   useLayoutAnimation(
     [itemInnerRef, gridContentRef],
     [activeTab],
@@ -26,10 +26,9 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
       container.style.justifyContent = activeTab
     },
     (element) => {
-      const currentX = element.offsetLeft
+      const currentX = Number(element.offsetLeft)
       const initialX = Number(element.dataset.oldX)
       const offsetX = initialX - currentX
-
       const animation = animate({
         from: offsetX,
         to: 0,
@@ -47,9 +46,9 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
         stop: () => animation.stop(),
       }
     },
+    'my-sync-group', // 同步组标识
   )
 
-  // 第二个容器的动画逻辑
   useLayoutAnimation(
     [gridContentRef],
     [jiActiveTab, displayCount],
@@ -89,15 +88,13 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
         stop: () => animation.stop(),
       }
     },
+    'my-sync-group',
   )
 
   return (
     <div className="lb-layout-box">
       <div className="lb-inner-box">
-        <div
-          className="lb-item"
-          style={{ transform: isOn ? CONTAINER_TRANSFORM_RIGHT : undefined }}
-        >
+        <div className="lb-item" style={{ transform: isOn ? CONTAINER_TRANSFORM_RIGHT : undefined }}>
           <div className="lb-item-inner" ref={itemInnerRef}>
             <div className="lb-items">C1</div>
             <div className="lb-items">C2</div>
@@ -105,11 +102,7 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
           </div>
         </div>
       </div>
-
-      <div
-        className="lb-grid"
-        style={{ transform: isOn ? CONTAINER_TRANSFORM_LEFT : undefined }}
-      >
+      <div className="lb-grid" style={{ transform: isOn ? CONTAINER_TRANSFORM_LEFT : undefined }}>
         <div className="lb-grid-content" ref={gridContentRef}>
           {contentText
             .slice(0, displayCount ? contentText.length : 2)

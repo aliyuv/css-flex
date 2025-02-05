@@ -29,3 +29,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.toggle-switch>div{
+  user-select: none;
+}

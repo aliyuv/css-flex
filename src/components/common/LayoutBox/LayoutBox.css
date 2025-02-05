@@ -141,5 +141,5 @@ body {
   height: 5px;
   border: 2px dashed #75808a;
   border-radius: 5px 5px 0 0;
-  border-bottom: unset;
+  border-bottom: none;
 }
