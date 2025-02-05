@@ -15,8 +15,8 @@ export default function ContentJustify() {
   const [justifySelfValue, setJustifySelfValue] = useState<string>('stretch')
   const [isSwitchOn, setIsSwitchOn] = useState(false)
   const [displayJustify, setDisplayJustify] = useState({
-    justifyContent: false,
-    justifyItems: false,
+    justifyContent: true,
+    justifyItems: true,
     justifySelf: false,
   })
 
