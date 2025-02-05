@@ -1,27 +1,40 @@
 import React from 'react'
 import './CommonTabs.css'
 
-interface props {
-  props: [] | string[]
-  dec?: string
-  onChange?: (value: string) => void
-  activeTab: string
+interface CommonTabsProps {
+  options: string[]
+  label?: string
+  activeValue: string
+  onValueChange?: (value: string) => void
+  className?: string
   style?: React.CSSProperties
 }
 
-export default function CommonTabs({ props, dec, onChange, activeTab, style }: props) {
+export default function CommonTabs({
+  options,
+  label,
+  activeValue,
+  onValueChange,
+  className = '',
+  style,
+}: CommonTabsProps) {
   return (
     <>
-      <div className="ct-tab-contaniner" style={style}>
+      <div className={`ct-tab-container ${className}`} style={style}>
         <div className="ct-tab-inner">
           <div className="ct-tab-button">
-            <div className="ct-dec">{dec}</div>
+            {label && <div className="ct-dec">{label}</div>}
             <div className="ct-items">
               {
-                props.map((item, i) => (
-                  <button key={i} className="ct-btn" onClick={() => onChange?.(item)}>
-                    <span className="ct-arrt" style={{ opacity: item === activeTab ? 1 : 0.8 }}>{item}</span>
-                    <div className={`ct-bottomLine ${item === activeTab ? 'active' : 'inactive'}`}></div>
+                options.map(option => (
+                  <button
+                    key={option}
+                    className={`ct-btn ${option === activeValue ? 'active' : ''}`}
+                    onClick={() => onValueChange?.(option)}
+                    aria-selected={option === activeValue}
+                  >
+                    <span className={`ct-tab-label ${option === activeValue ? 'active' : 'inactive'}`}>{option}</span>
+                    <div className={`ct-bottomLine ${option === activeValue ? 'active' : 'inactive'}`} />
                   </button>
                 ))
               }

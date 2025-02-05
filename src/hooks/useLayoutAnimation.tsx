@@ -19,7 +19,6 @@ export default function (
     const containers = containerRefs
       .map(ref => ref.current)
       .filter(Boolean) as HTMLElement[]
-
     containers.forEach((container) => {
       const items = Array.from(container.children) as HTMLElement[]
       items.forEach((element) => {
@@ -29,7 +28,6 @@ export default function (
     })
 
     containers.forEach(container => updateLayout(container))
-
     const startAnimations = () => {
       animations = containers.flatMap((container) => {
         return Array.from(container.children)
