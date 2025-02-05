@@ -19,29 +19,27 @@ export default function CommonTabs({
   style,
 }: CommonTabsProps) {
   return (
-    <>
-      <div className={`ct-tab-container ${className}`} style={style}>
-        <div className="ct-tab-inner">
-          <div className="ct-tab-button">
-            {label && <div className="ct-dec">{label}</div>}
-            <div className="ct-items">
-              {
-                options.map(option => (
-                  <button
-                    key={option}
-                    className={`ct-btn ${option === activeValue ? 'active' : ''}`}
-                    onClick={() => onValueChange?.(option)}
-                    aria-selected={option === activeValue}
-                  >
-                    <span className={`ct-tab-label ${option === activeValue ? 'active' : 'inactive'}`}>{option}</span>
-                    <div className={`ct-bottomLine ${option === activeValue ? 'active' : 'inactive'}`} />
-                  </button>
-                ))
-              }
-            </div>
+    <div className={`ct-tab-container ${className}`} style={style}>
+      <div className="ct-tab-inner">
+        <div className="ct-tab-button">
+          {label && <div className="ct-dec">{label}</div>}
+          <div className="ct-items">
+            {
+              options.map(option => (
+                <button
+                  key={option}
+                  className={`ct-btn ${option === activeValue ? 'active' : ''}`}
+                  onClick={() => onValueChange?.(option)}
+                  aria-selected={option === activeValue}
+                >
+                  <span className={`ct-tab-label ${option === activeValue ? 'active' : 'inactive'}`}>{option}</span>
+                  <div className={`ct-bottomLine ${option === activeValue ? 'active' : 'inactive'}`} />
+                </button>
+              ))
+            }
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

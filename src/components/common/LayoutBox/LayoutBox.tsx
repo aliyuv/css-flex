@@ -6,17 +6,19 @@ import './LayoutBox.css'
 interface SwitchProps {
   isOn: boolean
   activeTab: string
-  jiActiveTab: string
-  displayCount: boolean
+  activeValue: string
+  display_justify: boolean
+  activeItem: string
 }
 
 const ANIMATION_DURATION = 300
 const CONTAINER_TRANSFORM_LEFT = 'translateX(-10%) skewY(18deg) scaleX(0.85)'
 const CONTAINER_TRANSFORM_RIGHT = 'translateX(10%) skewY(18deg) scaleX(0.85)'
 
-export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }: SwitchProps) {
+export default function LayoutBox({ isOn, activeTab, activeValue, activeItem, display_justify }: SwitchProps) {
   const itemInnerRef = useRef<HTMLDivElement>(null)
   const gridContentRef = useRef<HTMLDivElement>(null)
+  const gridItemRef = useRef<HTMLDivElement>(null)
   const contentText = ['One', 'Two', 'Three', 'Four']
 
   useLayoutAnimation(
@@ -50,10 +52,13 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
   )
 
   useLayoutAnimation(
-    [gridContentRef],
-    [jiActiveTab, displayCount],
+    [gridContentRef, gridItemRef],
+    [activeValue, activeItem, display_justify],
     (container) => {
-      container.style.justifyItems = jiActiveTab
+      container.style.justifyItems = activeValue
+      if (container.children && container.children.length >= 1) {
+        (container.firstElementChild as HTMLElement).style.justifySelf = activeItem
+      }
     },
     (element) => {
       const newX = element.offsetLeft
@@ -90,7 +95,6 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
     },
     'my-sync-group',
   )
-
   return (
     <div className="lb-layout-box">
       <div className="lb-inner-box">
@@ -98,19 +102,19 @@ export default function LayoutBox({ isOn, activeTab, jiActiveTab, displayCount }
           <div className="lb-item-inner" ref={itemInnerRef}>
             <div className="lb-items">C1</div>
             <div className="lb-items">C2</div>
-            <div className={`lb-row-line ${displayCount ? 'visible' : 'hidden'}`} />
+            <div className={`lb-row-line ${display_justify ? 'visible' : 'hidden'}`} />
           </div>
         </div>
       </div>
       <div className="lb-grid" style={{ transform: isOn ? CONTAINER_TRANSFORM_LEFT : undefined }}>
         <div className="lb-grid-content" ref={gridContentRef}>
           {contentText
-            .slice(0, displayCount ? contentText.length : 2)
-            .map(item => (
-              <div className="lb-grid-item" key={item}>
+            .slice(0, display_justify ? contentText.length : 2)
+            .map((item, i) => (
+              <div className="lb-grid-item " key={item} ref={gridItemRef}>
                 <div className="lb-grid-item-box">
-                  <div className="lb-grid-inner">
-                    {displayCount && <div className="lb-text">{item}</div>}
+                  <div className={`lb-grid-inner ${i === 0 ? 'active' : ''}`}>
+                    {display_justify && <div className="lb-text">{item}</div>}
                   </div>
                 </div>
               </div>

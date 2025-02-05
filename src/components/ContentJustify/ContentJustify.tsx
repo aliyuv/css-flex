@@ -7,11 +7,13 @@ import './ContentJustify.css'
 
 const JUSTIFY_CONTENT_OPTIONS = ['start', 'center', 'end', 'space-between', 'space-around', 'space-evenly']
 const JUSTIFY_ITEMS_OPTIONS = ['stretch', 'start', 'center', 'end']
-const DISPLAY_JUSTIFY_ITEMS = true
+const JUSTIFY_SELF_OPTIONS = ['stretch', 'start', 'center', 'end']
+const DISPLAY_JUSTIFY = true
 
 export default function ContentJustify() {
   const [justifyItemsValue, setJustifyItemsValue] = useState<(typeof JUSTIFY_ITEMS_OPTIONS)[number]>('stretch')
   const [justifyContentValue, setJustifyContentValue] = useState<(typeof JUSTIFY_CONTENT_OPTIONS)[number]>('start')
+  const [justifySelfValue, setJustifySelfValue] = useState<string>('stretch')
   const [isSwitchOn, setIsSwitchOn] = useState(false)
   const tabConfigurations = [
     {
@@ -25,7 +27,14 @@ export default function ContentJustify() {
       label: 'justify-items:',
       value: justifyItemsValue,
       onChange: setJustifyItemsValue,
-      style: { display: DISPLAY_JUSTIFY_ITEMS ? `block` : `none` },
+      style: { display: DISPLAY_JUSTIFY ? `block` : `none` },
+    },
+    {
+      items: JUSTIFY_SELF_OPTIONS,
+      label: 'justify-self:',
+      value: justifySelfValue,
+      onChange: setJustifySelfValue,
+      style: { display: DISPLAY_JUSTIFY ? `block` : `none` },
     },
   ]
 
@@ -47,8 +56,9 @@ export default function ContentJustify() {
       <LayoutBox
         isOn={isSwitchOn}
         activeTab={justifyContentValue}
-        jiActiveTab={justifyItemsValue}
-        displayCount={DISPLAY_JUSTIFY_ITEMS}
+        activeValue={justifyItemsValue}
+        activeItem={justifySelfValue}
+        display_justify={DISPLAY_JUSTIFY}
       />
 
       <Switch
