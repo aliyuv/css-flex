@@ -15,9 +15,9 @@ export default function ContentJustify() {
   const [justifySelfValue, setJustifySelfValue] = useState<string>('stretch')
   const [isSwitchOn, setIsSwitchOn] = useState(false)
   const [displayJustify, setDisplayJustify] = useState({
-    justifyContent: true,
-    justifyItems: true,
-    justifySelf: true,
+    justifyContent: false,
+    justifyItems: false,
+    justifySelf: false,
   })
 
   const tabConfigurations = [
@@ -73,14 +73,16 @@ export default function ContentJustify() {
         }
         isOn={isSwitchOn}
       />
-      <button onClick={() =>
-        setDisplayJustify(p => (
-          {
-            ...p,
-            justifyItems: !p.justifyItems,
-            justifySelf: !p.justifySelf,
-            justifyContent: !p.justifyContent,
-          }))}
+      <button
+        className="cu-button"
+        onClick={() =>
+          setDisplayJustify(p => (
+            {
+              ...p,
+              justifyItems: !p.justifyItems,
+              justifySelf: !p.justifySelf,
+              justifyContent: !p.justifyContent,
+            }))}
       >
         Toggle Items
       </button>

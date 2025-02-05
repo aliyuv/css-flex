@@ -1,0 +1,10 @@
+.cu-button{
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #FFF3B0;
+  border: 2px solid #FFF3B0;
+  margin: 16px auto;
+}
