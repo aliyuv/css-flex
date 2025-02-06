@@ -12,6 +12,7 @@ const JUSTIFY_ITEMS_OPTIONS = ['stretch', 'start', 'center', 'end']
 const JUSTIFY_SELF_OPTIONS = ['stretch', 'start', 'center', 'end']
 const ALIGN_CONTENT_OPTIONS = ['start', 'center', 'end', 'space-between', 'space-around', 'space-evenly']
 const ALIGN_ITEMS_OPTIONS = ['stretch', 'start', 'center', 'end']
+const PLACE_CONTENT_OPTIONS = ['start', 'center', 'end']
 
 export default function ContentJustify() {
   const [justifyItemsValue, setJustifyItemsValue] = useState<(typeof JUSTIFY_ITEMS_OPTIONS)[number]>('stretch')
@@ -19,13 +20,15 @@ export default function ContentJustify() {
   const [justifySelfValue, setJustifySelfValue] = useState<string>('stretch')
   const [alignContent, setAlignContent] = useState<string>('start')
   const [alignItems, setAlignItems] = useState<string>('stretch')
+  const [placeContent, setPlaceContent] = useState<string>('start')
   const [isSwitchOn, setIsSwitchOn] = useState(false)
   const [displayJustify, setDisplayJustify] = useState({
-    justifyContent: true,
-    justifyItems: true,
+    justifyContent: false,
+    justifyItems: false,
     justifySelf: false,
-    alignContent: true,
-    alignItem: true,
+    alignContent: false,
+    alignItem: false,
+    placeContent: true,
   })
 
   const tabConfigurations = [
@@ -64,6 +67,13 @@ export default function ContentJustify() {
       onChange: setAlignItems,
       style: { display: displayJustify.alignContent ? `block` : `none` },
     },
+    {
+      items: PLACE_CONTENT_OPTIONS,
+      label: 'place-content:',
+      value: placeContent,
+      onChange: setPlaceContent,
+      style: { display: displayJustify.placeContent ? `block` : `none` },
+    },
   ]
 
   return (
@@ -89,14 +99,16 @@ export default function ContentJustify() {
         display_justify={displayJustify}
       />
 
-      <AligningRows
-        justifyContentValue={justifyContentValue}
-        justifyItemsValue={justifyItemsValue}
-        alignContentValue={alignContent}
-        alignItemsValue={alignItems}
-      />
-
-      <PlaceContent />
+      {displayJustify.alignItem
+        ? (
+            <AligningRows
+              justifyContentValue={justifyContentValue}
+              justifyItemsValue={justifyItemsValue}
+              alignContentValue={alignContent}
+              alignItemsValue={alignItems}
+            />
+          )
+        : <PlaceContent />}
 
       <Switch
         handleIsOnChange={
