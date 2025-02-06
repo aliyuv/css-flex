@@ -9,16 +9,22 @@ import './ContentJustify.css'
 const JUSTIFY_CONTENT_OPTIONS = ['start', 'center', 'end', 'space-between', 'space-around', 'space-evenly']
 const JUSTIFY_ITEMS_OPTIONS = ['stretch', 'start', 'center', 'end']
 const JUSTIFY_SELF_OPTIONS = ['stretch', 'start', 'center', 'end']
+const ALIGN_CONTENT_OPTIONS = ['start', 'center', 'end', 'space-between', 'space-around', 'space-evenly']
+const ALIGN_ITEMS_OPTIONS = ['stretch', 'start', 'center', 'end']
 
 export default function ContentJustify() {
   const [justifyItemsValue, setJustifyItemsValue] = useState<(typeof JUSTIFY_ITEMS_OPTIONS)[number]>('stretch')
   const [justifyContentValue, setJustifyContentValue] = useState<(typeof JUSTIFY_CONTENT_OPTIONS)[number]>('start')
   const [justifySelfValue, setJustifySelfValue] = useState<string>('stretch')
+  const [alignContent, setAlignContent] = useState<string>('start')
+  const [alignItems, setAlignItems] = useState<string>('stretch')
   const [isSwitchOn, setIsSwitchOn] = useState(false)
   const [displayJustify, setDisplayJustify] = useState({
     justifyContent: true,
     justifyItems: true,
     justifySelf: false,
+    alignContent: true,
+    alignItem: true,
   })
 
   const tabConfigurations = [
@@ -42,6 +48,20 @@ export default function ContentJustify() {
       value: justifySelfValue,
       onChange: setJustifySelfValue,
       style: { display: displayJustify.justifySelf ? `block` : `none` },
+    },
+    {
+      items: ALIGN_CONTENT_OPTIONS,
+      label: 'align-content:',
+      value: alignContent,
+      onChange: setAlignContent,
+      style: { display: displayJustify.alignContent ? `block` : `none` },
+    },
+    {
+      items: ALIGN_ITEMS_OPTIONS,
+      label: 'align-items:',
+      value: alignItems,
+      onChange: setAlignItems,
+      style: { display: displayJustify.alignContent ? `block` : `none` },
     },
   ]
 
@@ -67,7 +87,14 @@ export default function ContentJustify() {
         activeItem={justifySelfValue}
         display_justify={displayJustify}
       />
-      <AligningRows />
+
+      <AligningRows
+        justifyContentValue={justifyContentValue}
+        justifyItemsValue={justifyItemsValue}
+        alignContentValue={alignContent}
+        alignItemsValue={alignItems}
+      />
+
       <Switch
         handleIsOnChange={
           () => setIsSwitchOn(prev => !prev)
@@ -77,6 +104,7 @@ export default function ContentJustify() {
           display: displayJustify.justifySelf ? `` : `none`,
         }}
       />
+
       <button
         className="cu-button"
         onClick={() =>
