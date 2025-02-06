@@ -116,7 +116,7 @@ export default function ContentJustify() {
         }
         isOn={isSwitchOn}
         style={{
-          display: displayJustify.justifySelf ? `` : `none`,
+          display: displayJustify.placeContent ? `` : `none`,
         }}
       />
 
@@ -130,6 +130,7 @@ export default function ContentJustify() {
               justifySelf: !p.justifySelf,
               justifyContent: !p.justifyContent,
             }))}
+        style={{ display: !displayJustify.placeContent ? `block` : `none` }}
       >
         Toggle Items
       </button>
