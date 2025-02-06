@@ -105,7 +105,7 @@ export default function LayoutBox({ isOn, activeTab, activeValue, activeItem, di
     'my-sync-group',
   )
   return (
-    <div className="lb-layout-box">
+    <div className="lb-layout-box" style={{ display: 'none' }}>
       <div className="lb-inner-box">
         <div className="lb-item" style={{ transform: isOn ? CONTAINER_TRANSFORM_RIGHT : undefined }}>
           <div className="lb-item-inner" ref={itemInnerRef}>

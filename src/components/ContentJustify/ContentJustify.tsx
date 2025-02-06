@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import AligningRows from '../common/LayoutBox/AligningRows.tsx'
 import LayoutBox from '../common/LayoutBox/LayoutBox.tsx'
 import LayoutContainer from '../common/layoutContainer/LayoutContainer.tsx'
 import Switch from '../common/switch/Switch.tsx'
@@ -66,12 +67,15 @@ export default function ContentJustify() {
         activeItem={justifySelfValue}
         display_justify={displayJustify}
       />
-
+      <AligningRows />
       <Switch
         handleIsOnChange={
           () => setIsSwitchOn(prev => !prev)
         }
         isOn={isSwitchOn}
+        style={{
+          display: displayJustify.justifySelf ? `` : `none`,
+        }}
       />
       <button
         className="cu-button"
