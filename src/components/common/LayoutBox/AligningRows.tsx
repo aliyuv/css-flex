@@ -18,8 +18,10 @@ export default function AligningRows() {
         <div className="ar-grid-items">
           {
             textArr.map(item => (
-              <div key={item} className="ar-grid-item">
-                <span>{item}</span>
+              <div className="ar-grid-layout">
+                <div key={item} className="ar-grid-item">
+                  <div>{item}</div>
+                </div>
               </div>
             ))
           }
