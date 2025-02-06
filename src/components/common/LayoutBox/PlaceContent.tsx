@@ -3,19 +3,17 @@ import './PlaceContent.css'
 export default function PlaceContent() {
   return (
     <div className="PlaceContent-container">
-      <div className="PlaceContent-iner">
+      <div className="PlaceContent-inner">
         <div className="PlaceContent-items">
-          <div className="PlaceContent-item">
-            <div className="">R1</div>
+          <div
+            className="PlaceContent-item"
+          >
+            <div className="PlaceContent-text R1">R1</div>
           </div>
-          <div className="PlaceContent-item">
-            <div className="">C1</div>
-          </div>
-          <div className="PlaceContent-item">
-            <div className="">R1</div>
-          </div>
-          <div className="PlaceContent-item">
-            <div className="">C1</div>
+          <div
+            className="PlaceContent-item"
+          >
+            <div className="PlaceContent-text C1">C1</div>
           </div>
         </div>
         <div className="PlaceContent-box">
