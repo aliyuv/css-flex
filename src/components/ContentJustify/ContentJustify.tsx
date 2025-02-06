@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import AligningRows from '../common/LayoutBox/AligningRows.tsx'
 import LayoutBox from '../common/LayoutBox/LayoutBox.tsx'
+import PlaceContent from '../common/LayoutBox/PlaceContent.tsx'
 import LayoutContainer from '../common/layoutContainer/LayoutContainer.tsx'
 import Switch from '../common/switch/Switch.tsx'
 import CommonTabs from '../common/tabs/CommonTabs.tsx'
@@ -94,6 +95,8 @@ export default function ContentJustify() {
         alignContentValue={alignContent}
         alignItemsValue={alignItems}
       />
+
+      <PlaceContent />
 
       <Switch
         handleIsOnChange={
