@@ -18,7 +18,7 @@ export default function PlaceContent() {
         </div>
         <div className="PlaceContent-box">
           <div className="PlaceContent-box-inner">
-            <div className="PlaceContent-item">
+            <div className="PlaceContent-box-item">
               <div className="">Child</div>
             </div>
           </div>
