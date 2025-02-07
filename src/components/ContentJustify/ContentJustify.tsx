@@ -108,7 +108,12 @@ export default function ContentJustify() {
               alignItemsValue={alignItems}
             />
           )
-        : <PlaceContent isSwitchOn={isSwitchOn} />}
+        : (
+            <PlaceContent
+              isSwitchOn={isSwitchOn}
+              placeContent={placeContent}
+            />
+          )}
 
       <Switch
         handleIsOnChange={
