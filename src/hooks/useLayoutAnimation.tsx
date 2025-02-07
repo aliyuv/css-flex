@@ -24,6 +24,7 @@ export default function (
       items.forEach((element) => {
         element.dataset.oldX = element.offsetLeft.toString()
         element.dataset.oldW = element.offsetWidth.toString()
+        element.dataset.oldY = element.offsetTop.toString()
       })
     })
 
